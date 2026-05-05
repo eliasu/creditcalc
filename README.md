@@ -1,73 +1,73 @@
 # Kreditrechner
 
-A browser-based mortgage and shared housing cost calculator, built for planning communal living projects — e.g. buying a property with multiple people and splitting costs fairly.
+Ein browserbasierter Kredit- und Wohnkostenrechner, entwickelt für die Planung von Gemeinschaftsprojekten — z.B. den Kauf einer Immobilie mit mehreren Personen und die faire Aufteilung der Kosten.
 
-## What it does
+## Was er kann
 
-Enter a property purchase, configure one or more loan tranches, and instantly see the monthly rent per person for groups of 5 to 20 people.
+Kaufpreis und Kreditkonditionen eingeben, beliebig viele Kreditposten konfigurieren, und sofort die monatliche Miete pro Person für Gruppen von 5 bis 20 Personen ablesen.
 
-### Inputs
+### Eingaben
 
-**Purchase costs**
-- Purchase price (Kaufpreis)
-- Renovation / modernisation costs
-- Acquisition costs: broker fee, notary & land registry, real estate transfer tax (pre-filled for Brandenburg: 6.5%)
+**Kaufpreis & Nebenkosten**
+- Kaufpreis
+- Modernisierungskosten
+- Kaufnebenkosten: Maklerprovision, Notar & Grundbuch, Grunderwerbsteuer (voreingestellt für Brandenburg: 6,5 %)
 
-**Loan tranches** — add as many as you need (e.g. bank loan + private subordinated loan)
-- Each tranche has its own amount, interest rate, and term
-- An allocation bar shows whether the tranches exactly cover the total loan amount
+**Kreditposten** — beliebig viele (z.B. Bankkredit + privates Nachrangsdarlehen)
+- Pro Posten: Betrag, Zinssatz, Laufzeit
+- Fortschrittsbalken zeigt ob die Posten den Kreditbetrag genau abdecken
 
-**Monthly running costs**
-- Operating costs (Betriebskosten)
-- Investment costs (Investitionskosten)
-- Maintenance reserve (Instandhaltungsrücklage) — entered as € per m² per year
+**Monatliche Kosten**
+- Betriebskosten
+- Investitionskosten
+- Instandhaltungsrücklage — eingegeben als € pro m² pro Jahr
 
-**Target rent** — used only to colour the table cells (green = at or below target, red = above)
+**Idealvorstellung** — dient nur zur Einfärbung der Tabellenzellen (grün = am oder unter dem Zielwert, rot = darüber)
 
-### Output table
+### Ergebnistabelle
 
-Rows: 5 to 20 people  
-Columns: one per loan phase (e.g. "Year 1–10" while all tranches run, "Year 11–30" after the short-term loan is repaid)
+Zeilen: 5 bis 20 Personen  
+Spalten: eine pro Kreditphase (z.B. „Jahr 1–10" solange alle Posten laufen, „Jahr 11–30" nach Rückzahlung des kurzfristigen Darlehens)
 
-Hover over any cell to see the full cost breakdown per person:
-- Credit repayment
-- Operating costs
-- Investment costs
-- Maintenance reserve
+Hover über eine Zelle zeigt die vollständige Kostenaufschlüsselung pro Person:
+- Kreditrate
+- Betriebskosten
+- Investitionskosten
+- Instandhaltungsrücklage
 
 ## Features
 
-- **Multi-tranche loans** — model a bank loan alongside a private subordinated loan with different rates and terms
-- **Phase columns** — the table automatically splits into time phases based on when each loan ends
-- **Color coding** — green to red gradient based on a configurable target rent
-- **Share link** — encodes all inputs into a URL for easy sharing
-- **Reset button** — returns all fields to defaults
-- **LocalStorage** — saves your inputs between sessions
+- **Mehrere Kreditposten** — Bankkredit und privates Nachrangsdarlehen mit unterschiedlichen Konditionen kombinieren
+- **Phasenspalten** — Tabelle teilt sich automatisch nach Laufzeitenden auf
+- **Farbcodierung** — Grün-Rot-Verlauf basierend auf der eingestellten Idealvorstellung
+- **Link teilen** — alle Eingaben werden in die URL kodiert
+- **Reset-Knopf** — setzt alle Felder auf Standardwerte zurück
+- **LocalStorage** — Eingaben bleiben zwischen Sitzungen gespeichert
 
-## Usage
+## Verwendung
 
-No build step. Open `index.html` in a browser.
+Kein Build-Schritt nötig. `index.html` im Browser öffnen.
 
 ```
 creditcalc/
-├── index.html       # Calculator
-├── inflation.html   # German inflation data 1994–2024 (context for interest rate)
-└── styles.css       # Shared styles
+├── index.html       # Rechner
+├── inflation.html   # Deutsche Inflationsdaten 1994–2024 (Kontext für Zinssatz)
+└── styles.css       # Gemeinsame Styles
 ```
 
-## Defaults (Brandenburg, Germany)
+## Standardwerte (Brandenburg)
 
-| Field | Default |
+| Feld | Standard |
 |---|---|
-| Purchase price | 600,000 € |
-| Renovation | 400,000 € |
-| Broker fee | 0 % |
-| Notary & land registry | 2 % |
-| Real estate transfer tax | 6.5 % |
-| Bank loan | 800,000 € · 4 % · 30 years |
-| Subordinated loan | 200,000 € · 2 % · 10 years |
-| Operating costs | 1,000 €/month |
-| Investment costs | 500 €/month |
-| Floor area | 336 m² |
-| Maintenance reserve | 11.50 €/m²/year |
-| Target rent | 650 €/person/month |
+| Kaufpreis | 600.000 € |
+| Modernisierung | 400.000 € |
+| Maklerprovision | 0 % |
+| Notar & Grundbuch | 2 % |
+| Grunderwerbsteuer | 6,5 % |
+| Bankkredit | 800.000 € · 4 % · 30 Jahre |
+| Nachrangsdarlehen | 200.000 € · 2 % · 10 Jahre |
+| Betriebskosten | 1.000 €/Monat |
+| Investitionskosten | 500 €/Monat |
+| Wohnfläche | 336 m² |
+| Instandhaltungsrücklage | 11,50 €/m²/Jahr |
+| Idealvorstellung | 650 €/Person/Monat |
