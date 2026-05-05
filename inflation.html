@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inflation in Deutschland (1994–2024)</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <a href="index.html" class="back-link">← Zurück zum Kreditrechner</a>
+
+    <div class="inflation-card">
+        <h1>📈 Inflation in Deutschland</h1>
+        <div class="subtitle">Jährliche Inflationsraten von 1994 bis 2024</div>
+        
+        <div class="chart-container" id="inflation-chart"></div>
+        
+        <div class="chart-legend">
+            <span class="legend-item"><span class="legend-dot normal"></span> Normal (0–2%)</span>
+            <span class="legend-item"><span class="legend-dot elevated"></span> Erhöht (2–4%)</span>
+            <span class="legend-item"><span class="legend-dot high"></span> Hoch (>4%)</span>
+        </div>
+
+        <div class="stats-box">
+            <h3>📊 Statistiken</h3>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-value" id="avg-all">–</div>
+                    <div class="stat-label">Ø Gesamt (31 Jahre)</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="avg-15">–</div>
+                    <div class="stat-label">Ø Letzte 15 Jahre</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="max-rate">–</div>
+                    <div class="stat-label">Höchster Wert</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="min-rate">–</div>
+                    <div class="stat-label">Niedrigster Wert</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="chart-source">
+            Quelle: <a href="https://www.destatis.de/DE/Themen/Wirtschaft/Preise/Verbraucherpreisindex/_inhalt.html" target="_blank" rel="noopener">Statistisches Bundesamt (Destatis)</a>
+        </div>
+    </div>
+
+    <script>
+        const inflationData = [
+            { year: 1994, rate: 2.8 },
+            { year: 1995, rate: 1.8 },
+            { year: 1996, rate: 1.4 },
+            { year: 1997, rate: 1.9 },
+            { year: 1998, rate: 1.0 },
+            { year: 1999, rate: 0.6 },
+            { year: 2000, rate: 1.4 },
+            { year: 2001, rate: 1.9 },
+            { year: 2002, rate: 1.4 },
+            { year: 2003, rate: 1.0 },
+            { year: 2004, rate: 1.7 },
+            { year: 2005, rate: 1.5 },
+            { year: 2006, rate: 1.6 },
+            { year: 2007, rate: 2.3 },
+            { year: 2008, rate: 2.6 },
+            { year: 2009, rate: 0.3 },
+            { year: 2010, rate: 1.1 },
+            { year: 2011, rate: 2.3 },
+            { year: 2012, rate: 2.0 },
+            { year: 2013, rate: 1.5 },
+            { year: 2014, rate: 0.9 },
+            { year: 2015, rate: 0.3 },
+            { year: 2016, rate: 0.5 },
+            { year: 2017, rate: 1.8 },
+            { year: 2018, rate: 1.9 },
+            { year: 2019, rate: 1.4 },
+            { year: 2020, rate: 0.5 },
+            { year: 2021, rate: 3.1 },
+            { year: 2022, rate: 6.9 },
+            { year: 2023, rate: 5.9 },
+            { year: 2024, rate: 2.2 }
+        ];
+
+        function renderInflationChart() {
+            const container = document.getElementById('inflation-chart');
+            const maxRate = Math.max(...inflationData.map(d => d.rate));
+            
+            container.innerHTML = inflationData.map((d, i) => {
+                const heightPercent = (d.rate / maxRate) * 100;
+                let colorClass = '';
+                if (d.rate > 4) colorClass = 'high';
+                else if (d.rate > 2) colorClass = 'elevated';
+                
+                const showLabel = d.year % 5 === 0 || d.year === 2024;
+                
+                return `
+                    <div class="chart-bar ${colorClass}" style="height: ${heightPercent}%">
+                        <div class="tooltip">${d.year}: ${d.rate.toFixed(1)}%</div>
+                        ${showLabel ? `<span class="year-label">${d.year}</span>` : ''}
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function calculateStats() {
+            const rates = inflationData.map(d => d.rate);
+            const avgAll = rates.reduce((a, b) => a + b, 0) / rates.length;
+            
+            const last15 = inflationData.slice(-15).map(d => d.rate);
+            const avg15 = last15.reduce((a, b) => a + b, 0) / last15.length;
+            
+            const maxData = inflationData.reduce((a, b) => a.rate > b.rate ? a : b);
+            const minData = inflationData.reduce((a, b) => a.rate < b.rate ? a : b);
+            
+            document.getElementById('avg-all').textContent = avgAll.toFixed(2) + '%';
+            document.getElementById('avg-15').textContent = avg15.toFixed(2) + '%';
+            document.getElementById('max-rate').textContent = maxData.rate + '% (' + maxData.year + ')';
+            document.getElementById('min-rate').textContent = minData.rate + '% (' + minData.year + ')';
+        }
+
+        renderInflationChart();
+        calculateStats();
+    </script>
+</body>
+</html>

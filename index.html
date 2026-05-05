@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex">
+    <title>Kreditrechner</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* ── Layout ── */
+        .calculator-card {
+            display: block !important; /* override grid from styles.css */
+        }
+        .header-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        .main-grid {
+            display: grid;
+            grid-template-columns: 340px 1fr;
+            gap: 2.5rem;
+            align-items: start;
+        }
+        @media (max-width: 860px) {
+            .main-grid { grid-template-columns: 1fr; }
+        }
+
+        /* ── Inputs column ── */
+        .inputs-col {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+        }
+        .section-label {
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-light);
+        }
+        .form-section {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        /* ── Boxes ── */
+        .box {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: var(--radius);
+            padding: 1rem 1.1rem;
+        }
+        .box--blue {
+            background: #eff6ff;
+            border-color: #bfdbfe;
+        }
+        .box--ideal {
+            background: #eff6ff;
+            border-color: #bfdbfe;
+            border-radius: var(--radius);
+            padding: 1rem 1.1rem;
+        }
+        .box-title {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--text-light);
+            margin-bottom: 0.75rem;
+        }
+        .sum-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            color: var(--text-light);
+            padding: 0.2rem 0;
+        }
+        .sum-row + .sum-row { border-top: none; }
+        .sum-val {
+            font-weight: 600;
+            color: var(--text-color);
+        }
+        .sum-row--divider {
+            border-top: 1px solid #e2e8f0;
+            margin-top: 0.25rem;
+            padding-top: 0.45rem;
+        }
+
+        /* ── Nebenkosten inline ── */
+        .cost-row {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+        .cost-row label {
+            flex: 1;
+            font-weight: 400;
+            font-size: 0.82rem;
+            color: var(--text-light);
+            margin: 0;
+        }
+        .input-wrapper--sm {
+            width: 84px;
+            flex-shrink: 0;
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+        .input-wrapper--sm input[type="number"] {
+            padding: 5px 24px 5px 8px;
+            font-size: 0.82rem;
+            width: 100%;
+        }
+        .input-wrapper--sm span {
+            position: absolute;
+            right: 7px;
+            font-size: 0.75rem;
+            color: var(--text-light);
+            pointer-events: none;
+        }
+        .abs-val {
+            width: 82px;
+            text-align: right;
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--text-color);
+            flex-shrink: 0;
+        }
+
+        /* ── Kreditbetrag display ── */
+        .kreditbetrag-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .kreditbetrag-label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+        .kreditbetrag-value {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+        .kreditbetrag-ideal { color: #10b981; }
+        .kreditbetrag-warn  { color: #f59e0b; }
+        .kreditbetrag-over  { color: #ef4444; }
+
+        /* ── Tranche list ── */
+        .tranche-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+        }
+        .tranche-card {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 0.8rem 0.9rem;
+        }
+        .tranche-header {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.6rem;
+        }
+        .tranche-name {
+            flex: 1;
+            border: none;
+            border-bottom: 1px solid #e2e8f0;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-color);
+            padding: 2px 4px;
+            background: transparent;
+            outline: none;
+            width: 100%;
+        }
+        .tranche-name:focus { border-bottom-color: var(--primary-color); }
+        .tranche-delete {
+            background: none;
+            border: none;
+            color: #d1d5db;
+            cursor: pointer;
+            font-size: 1rem;
+            padding: 0 4px;
+            line-height: 1;
+            transition: color 0.15s;
+        }
+        .tranche-delete:hover { color: #ef4444; }
+        .tranche-fields {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 0.5rem;
+        }
+        .tranche-field label {
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: var(--text-light);
+            display: block;
+            margin-bottom: 3px;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+        }
+        .tranche-field .input-wrapper input[type="number"] {
+            padding: 6px 28px 6px 8px;
+            font-size: 0.85rem;
+        }
+        .tranche-field .input-wrapper span {
+            right: 8px;
+            font-size: 0.75rem;
+        }
+        .add-tranche-btn {
+            background: none;
+            border: 1px dashed #cbd5e1;
+            border-radius: 8px;
+            padding: 8px;
+            width: 100%;
+            cursor: pointer;
+            font-size: 0.82rem;
+            color: var(--text-light);
+            transition: all 0.15s;
+        }
+        .add-tranche-btn:hover {
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+            background: #eff6ff;
+        }
+        .alloc-bar {
+            height: 4px;
+            border-radius: 2px;
+            background: #e2e8f0;
+            margin: 0.3rem 0 0.5rem;
+            overflow: hidden;
+        }
+        .alloc-bar-fill {
+            height: 100%;
+            border-radius: 2px;
+            transition: width 0.2s, background 0.2s;
+        }
+        .alloc-label {
+            font-size: 0.75rem;
+            color: var(--text-light);
+            text-align: right;
+            margin-bottom: 0.5rem;
+        }
+
+        /* ── Share btn ── */
+        .share-btn {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-family: inherit;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .share-btn:hover { background: #1d4ed8; }
+
+        /* ── Hint ── */
+        .hint {
+            font-size: 0.7rem;
+            color: var(--text-light);
+            display: block;
+        }
+        .hint--link {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+        .hint--link:hover { text-decoration: underline; }
+
+        /* ── Table ── */
+        .table-col {
+            position: sticky;
+            top: 0;
+            align-self: start;
+            overflow: visible;
+        }
+
+        .people-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+            table-layout: fixed;
+        }
+        .people-table col.col-people { width: 80px; }
+        .people-table col.col-phase  { width: auto; }
+
+        .people-table thead tr {
+            background: #f8fafc;
+        }
+        .people-table th {
+            text-align: left;
+            padding: 14px 28px;
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--text-light);
+            border-bottom: 2px solid #e2e8f0;
+            white-space: nowrap;
+        }
+        .people-table th.phase-header {
+            text-align: center;
+        }
+        .people-table th .phase-sub {
+            display: block;
+            font-size: 0.65rem;
+            font-weight: 400;
+            opacity: 0.7;
+            margin-top: 3px;
+            text-transform: none;
+            letter-spacing: 0;
+        }
+        .people-table td {
+            padding: 8px;
+            border-bottom: 1px solid #f1f5f9;
+            vertical-align: middle;
+        }
+        .people-table tr:last-child td { border-bottom: none; }
+        .people-table tr:hover .td-people { background: #f8fafc; }
+
+        .td-people {
+            padding: 30px 28px;
+            font-weight: 700;
+            color: var(--text-color);
+            font-size: 1.05rem;
+            background: white;
+            white-space: nowrap;
+        }
+
+        /* ── Rent cell with tooltip ── */
+        .td-rent {
+            position: relative;
+            padding: 30px 28px;
+            font-weight: 700;
+            font-size: 1rem;
+            text-align: center;
+            cursor: default;
+            white-space: nowrap;
+        }
+        .td-rent:hover .rent-tooltip {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+            pointer-events: auto;
+        }
+        .rent-tooltip {
+            position: absolute;
+            left: 50%;
+            top: 100%;
+            padding-top: 8px;
+            transform: translateX(-50%) translateY(-4px);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.15s, transform 0.15s;
+            z-index: 100;
+        }
+        .rent-tooltip-inner {
+            background: #1f2937;
+            color: #f9fafb;
+            padding: 10px 14px;
+            border-radius: 8px;
+            font-size: 0.78rem;
+            font-weight: 400;
+            white-space: nowrap;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+            position: relative;
+        }
+        .rent-tooltip-inner::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-left: 5px solid transparent;
+            border-right: 5px solid transparent;
+            border-bottom: 5px solid #1f2937;
+        }
+        .tt-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 1.25rem;
+            margin-bottom: 3px;
+        }
+        .tt-row:last-child {
+            margin-bottom: 0;
+            margin-top: 5px;
+            padding-top: 5px;
+            border-top: 1px solid #374151;
+            font-weight: 600;
+        }
+        .tt-label { color: #9ca3af; }
+
+        .ideal-box label { color: var(--primary-color); }
+    </style>
+</head>
+<body>
+
+<div class="calculator-card">
+    <div class="header-row">
+        <h2 style="margin-bottom:0;color:var(--text-color);font-weight:700;">Kreditrechner</h2>
+        <div style="display:flex;gap:0.5rem;">
+            <button id="reset-btn" class="share-btn" style="background:#f1f5f9;color:var(--text-light);border:1px solid #e2e8f0;">↺ Reset</button>
+            <button id="share-btn" class="share-btn">🔗 Link teilen</button>
+        </div>
+    </div>
+
+    <div class="main-grid">
+
+        <!-- ── INPUTS ── -->
+        <div class="inputs-col">
+
+            <span class="section-label">Kaufpreis &amp; Nebenkosten</span>
+
+            <div class="form-section">
+                <div class="input-group">
+                    <label for="kaufpreis-main">Kaufpreis</label>
+                    <div class="input-wrapper">
+                        <input type="number" id="kaufpreis-main" value="600000" min="0" step="5000">
+                        <span>€</span>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label for="modernisierung">Modernisierungskosten</label>
+                    <div class="input-wrapper">
+                        <input type="number" id="modernisierung" value="400000" min="0" step="1000">
+                        <span>€</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="box">
+                <div class="box-title">Kaufnebenkosten</div>
+                <div class="cost-row">
+                    <label for="makler-pct">Maklerprovision</label>
+                    <div class="input-wrapper--sm">
+                        <input type="number" id="makler-pct" value="0" min="0" max="10" step="0.1">
+                        <span>%</span>
+                    </div>
+                    <span id="makler-abs" class="abs-val">–</span>
+                </div>
+                <div class="cost-row">
+                    <label for="notar-pct">Notar &amp; Grundbuch</label>
+                    <div class="input-wrapper--sm">
+                        <input type="number" id="notar-pct" value="2" min="0" max="5" step="0.1">
+                        <span>%</span>
+                    </div>
+                    <span id="notar-abs" class="abs-val">–</span>
+                </div>
+                <div class="cost-row">
+                    <label for="gew-pct">Grunderwerbsteuer</label>
+                    <div class="input-wrapper--sm">
+                        <input type="number" id="gew-pct" value="6.5" min="0" max="10" step="0.1">
+                        <span>%</span>
+                    </div>
+                    <span id="gew-abs" class="abs-val">–</span>
+                </div>
+                <div class="sum-row sum-row--divider" style="margin-top:0.6rem;">
+                    <span>Nebenkosten gesamt</span>
+                    <span id="neben-total" class="sum-val">–</span>
+                </div>
+            </div>
+
+            <div class="box box--blue">
+                <div class="kreditbetrag-row">
+                    <span class="kreditbetrag-label">Kreditbetrag (gesamt)</span>
+                    <span id="kreditbetrag-display" class="kreditbetrag-value">–</span>
+                </div>
+            </div>
+
+            <span class="section-label">Kreditposten</span>
+
+            <div class="tranche-list" id="tranche-list"></div>
+
+            <div class="alloc-bar"><div class="alloc-bar-fill" id="alloc-bar-fill"></div></div>
+            <div class="alloc-label" id="alloc-label">–</div>
+
+            <button class="add-tranche-btn" id="add-tranche-btn">+ Kreditposten hinzufügen</button>
+
+            <span class="section-label">Kosten / Monat</span>
+
+            <div class="form-section">
+                <div class="input-group">
+                    <label for="betriebskosten">Betriebskosten (Gesamt)</label>
+                    <div class="input-wrapper">
+                        <input type="number" id="betriebskosten" value="1000" min="0" step="10">
+                        <span>€</span>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label for="investitionskosten">Investitionskosten (Gesamt)</label>
+                    <div class="input-wrapper">
+                        <input type="number" id="investitionskosten" value="500" min="0" step="10">
+                        <span>€</span>
+                    </div>
+                </div>
+            </div>
+
+            <span class="section-label">Instandhaltungsrücklage</span>
+
+            <div class="form-section">
+                <div class="input-group">
+                    <label for="wohnflaeche">Wohnfläche</label>
+                    <div class="input-wrapper">
+                        <input type="number" id="wohnflaeche" value="336" min="0" step="10">
+                        <span>m²</span>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label for="ruecklage-qm">Rücklage pro m² / Jahr</label>
+                    <span class="hint">Faustregel: 7–10 € Neubau · 10–15 € Altbau</span>
+                    <div class="input-wrapper">
+                        <input type="number" id="ruecklage-qm" value="11.5" min="0.5" max="50" step="0.5">
+                        <span>€</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="box--ideal">
+                <div class="input-group">
+                    <label for="ideal" style="color:var(--primary-color);">Idealvorstellung / Person / Monat</label>
+                    <div class="input-wrapper">
+                        <input type="number" id="ideal" value="650" min="0" step="10">
+                        <span>€</span>
+                    </div>
+                    <span class="hint">Dient nur zur Einfärbung der Tabellenzellen.</span>
+                </div>
+            </div>
+
+            <div class="box">
+                <div class="box-title">Kredit-Zusammenfassung</div>
+                <div id="summary-rows"></div>
+            </div>
+
+        </div>
+
+        <!-- ── TABLE ── -->
+        <div class="table-col">
+            <table class="people-table">
+                <colgroup id="table-cols">
+                    <col class="col-people">
+                </colgroup>
+                <thead id="table-head"></thead>
+                <tbody id="table-body"></tbody>
+            </table>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    // ── State ──────────────────────────────────────────────
+    let tranches = [
+        { name: 'Bankkredit',          amount: 800000, rate: 4,   years: 30 },
+        { name: 'Nachrangsdarlehen',   amount: 200000, rate: 2,   years: 10 },
+    ];
+
+    // ── Static inputs ──────────────────────────────────────
+    const kaufpreisMainEl = document.getElementById('kaufpreis-main');
+    const modernEl        = document.getElementById('modernisierung');
+    const maklerPctEl     = document.getElementById('makler-pct');
+    const notarPctEl      = document.getElementById('notar-pct');
+    const gewPctEl        = document.getElementById('gew-pct');
+    const betriebsEl      = document.getElementById('betriebskosten');
+    const investEl        = document.getElementById('investitionskosten');
+    const wohnflaecheEl   = document.getElementById('wohnflaeche');
+    const ruecklageQmEl   = document.getElementById('ruecklage-qm');
+    const idealEl         = document.getElementById('ideal');
+
+    const fmt = new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'EUR' });
+    const fmtK = v => fmt.format(v);
+
+    // ── Annuity ────────────────────────────────────────────
+    function annuity(principal, ratePercent, years) {
+        if (principal <= 0 || years <= 0) return 0;
+        if (ratePercent === 0) return principal / (years * 12);
+        const r = ratePercent / 100 / 12;
+        const n = years * 12;
+        const f = Math.pow(1 + r, n);
+        return principal * (r * f) / (f - 1);
+    }
+
+    // ── Color ──────────────────────────────────────────────
+    function cellColor(value, ideal) {
+        if (!ideal || ideal <= 0) return { bg: '#f1f5f9', text: '#1f2937' };
+        const over  = value - ideal;
+        const ratio = over <= 0 ? 0 : Math.min(over / (ideal * 0.6), 1);
+        const hue   = Math.round(120 * (1 - ratio));
+        return { bg: `hsl(${hue},70%,82%)`, text: `hsl(${hue},65%,22%)` };
+    }
+
+    // ── Render tranche list ────────────────────────────────
+    function renderTranches() {
+        const list = document.getElementById('tranche-list');
+        list.innerHTML = '';
+
+        tranches.forEach((t, i) => {
+            const card = document.createElement('div');
+            card.className = 'tranche-card';
+            card.innerHTML = `
+                <div class="tranche-header">
+                    <input class="tranche-name" type="text" value="${t.name}" placeholder="Bezeichnung" data-i="${i}" data-f="name">
+                    ${tranches.length > 1 ? `<button class="tranche-delete" data-i="${i}" title="Entfernen">×</button>` : ''}
+                </div>
+                <div class="tranche-fields">
+                    <div class="tranche-field">
+                        <label>Betrag</label>
+                        <div class="input-wrapper">
+                            <input type="number" value="${t.amount}" min="0" step="1000" data-i="${i}" data-f="amount">
+                            <span>€</span>
+                        </div>
+                    </div>
+                    <div class="tranche-field">
+                        <label>Zinssatz</label>
+                        <div class="input-wrapper">
+                            <input type="number" value="${t.rate}" min="0" step="0.1" data-i="${i}" data-f="rate">
+                            <span>%</span>
+                        </div>
+                    </div>
+                    <div class="tranche-field">
+                        <label>Laufzeit</label>
+                        <div class="input-wrapper">
+                            <input type="number" value="${t.years}" min="1" max="50" step="1" data-i="${i}" data-f="years">
+                            <span>J</span>
+                        </div>
+                    </div>
+                </div>`;
+            list.appendChild(card);
+        });
+
+        list.querySelectorAll('input').forEach(el => el.addEventListener('input', onTrancheInput));
+        list.querySelectorAll('.tranche-delete').forEach(btn => btn.addEventListener('click', e => {
+            tranches.splice(parseInt(e.currentTarget.dataset.i), 1);
+            renderTranches();
+            calculate();
+        }));
+    }
+
+    function onTrancheInput(e) {
+        const i = parseInt(e.target.dataset.i);
+        const f = e.target.dataset.f;
+        tranches[i][f] = f === 'name' ? e.target.value : (parseFloat(e.target.value) || 0);
+        calculate();
+    }
+
+    document.getElementById('add-tranche-btn').addEventListener('click', () => {
+        tranches.push({ name: `Kredit ${tranches.length + 1}`, amount: 0, rate: 3, years: 20 });
+        renderTranches();
+        calculate();
+    });
+
+    // ── Static input listeners ─────────────────────────────
+    [kaufpreisMainEl, modernEl, maklerPctEl, notarPctEl, gewPctEl,
+     betriebsEl, investEl, wohnflaecheEl, ruecklageQmEl, idealEl
+    ].forEach(el => el.addEventListener('input', calculate));
+
+    // ── Main calculation ───────────────────────────────────
+    function calculate() {
+        // Kaufpreis & Nebenkosten
+        const kaufpreisVal = parseFloat(kaufpreisMainEl.value) || 0;
+        const modern       = parseFloat(modernEl.value)        || 0;
+        const maklerPct    = parseFloat(maklerPctEl.value)     || 0;
+        const notarPct     = parseFloat(notarPctEl.value)      || 0;
+        const gewPct       = parseFloat(gewPctEl.value)        || 0;
+
+        const maklerAbs  = kaufpreisVal * maklerPct / 100;
+        const notarAbs   = kaufpreisVal * notarPct  / 100;
+        const gewAbs     = kaufpreisVal * gewPct    / 100;
+        const nebenTotal = maklerAbs + notarAbs + gewAbs;
+        const kreditTotal = kaufpreisVal + modern + nebenTotal;
+
+        document.getElementById('makler-abs').textContent  = fmtK(maklerAbs);
+        document.getElementById('notar-abs').textContent   = fmtK(notarAbs);
+        document.getElementById('gew-abs').textContent     = fmtK(gewAbs);
+        document.getElementById('neben-total').textContent = fmtK(nebenTotal);
+        document.getElementById('kreditbetrag-display').textContent = fmtK(kreditTotal);
+
+        // Allocation bar
+        const allocated = tranches.reduce((s, t) => s + (t.amount || 0), 0);
+        const allocPct  = kreditTotal > 0 ? Math.min(allocated / kreditTotal, 1) : 0;
+        const diff      = kreditTotal - allocated;
+        const fill      = document.getElementById('alloc-bar-fill');
+        const label     = document.getElementById('alloc-label');
+        fill.style.width      = (allocPct * 100) + '%';
+        fill.style.background = Math.abs(diff) < 1 ? '#10b981' : diff > 0 ? '#f59e0b' : '#ef4444';
+        if (Math.abs(diff) < 1) {
+            label.textContent = '✓ Vollständig aufgeteilt';
+            label.style.color = '#10b981';
+        } else if (diff > 0) {
+            label.textContent = `Noch zuzuweisen: ${fmtK(diff)}`;
+            label.style.color = '#f59e0b';
+        } else {
+            label.textContent = `Übersteigt Kreditbetrag um ${fmtK(-diff)}`;
+            label.style.color = '#ef4444';
+        }
+
+        // Running costs
+        const betriebs       = parseFloat(betriebsEl.value)    || 0;
+        const invest         = parseFloat(investEl.value)      || 0;
+        const qm             = parseFloat(wohnflaecheEl.value)  || 0;
+        const ruecklageQm    = parseFloat(ruecklageQmEl.value)  || 0;
+        const ideal          = parseFloat(idealEl.value)        || 0;
+        const ruecklageMonth = qm * ruecklageQm / 12;
+        const fixedMonthly   = betriebs + invest + ruecklageMonth;
+
+        // Phases: unique sorted loan end-years
+        const endYears = [...new Set(tranches.map(t => t.years))].sort((a, b) => a - b);
+
+        // For each phase, compute which tranches are still running and total monthly payment
+        const phases = [];
+        let prevYear = 0;
+        for (const endYear of endYears) {
+            const active = tranches.filter(t => t.years >= endYear);
+            const monthly = active.reduce((s, t) => s + annuity(t.amount, t.rate, t.years), 0);
+            phases.push({ fromYear: prevYear + 1, toYear: endYear, monthly, active });
+            prevYear = endYear;
+        }
+
+        // Summary box
+        const summaryEl = document.getElementById('summary-rows');
+        let summaryHtml = '';
+        phases.forEach(ph => {
+            const label = ph.fromYear === ph.toYear
+                ? `Jahr ${ph.fromYear}`
+                : `Jahr ${ph.fromYear}–${ph.toYear}`;
+            summaryHtml += `<div class="sum-row"><span>${label} (${ph.active.length} Kredit${ph.active.length !== 1 ? 'e' : ''})</span><span class="sum-val">${fmtK(ph.monthly)}/Mo</span></div>`;
+        });
+        summaryHtml += `<div class="sum-row sum-row--divider"><span>Rücklage / Monat</span><span class="sum-val">${fmtK(ruecklageMonth)}</span></div>`;
+        summaryEl.innerHTML = summaryHtml;
+
+        // Colgroup
+        const colgroup = document.getElementById('table-cols');
+        colgroup.innerHTML = '<col class="col-people">' + phases.map(() => '<col class="col-phase">').join('');
+
+        // Table header
+        const thead = document.getElementById('table-head');
+        let headHtml = '<tr><th>Pers.</th>';
+        phases.forEach(ph => {
+            const yLabel = ph.fromYear === ph.toYear ? `Jahr ${ph.fromYear}` : `Jahr ${ph.fromYear}–${ph.toYear}`;
+            const sub    = ph.active.map(t => t.name || 'Kredit').join(', ');
+            headHtml += `<th class="phase-header">${yLabel}<span class="phase-sub">${sub}</span></th>`;
+        });
+        headHtml += '</tr>';
+        thead.innerHTML = headHtml;
+
+        // Table body
+        const tbody = document.getElementById('table-body');
+        let bodyHtml = '';
+        for (let p = 5; p <= 20; p++) {
+            bodyHtml += `<tr><td class="td-people">${p}</td>`;
+            phases.forEach(ph => {
+                const creditPP    = ph.monthly / p;
+                const betriebsPP  = betriebs / p;
+                const investPP    = invest / p;
+                const ruecklagePP = ruecklageMonth / p;
+                const totalPP     = creditPP + betriebsPP + investPP + ruecklagePP;
+                const totalFmt    = fmtK(totalPP);
+                const col         = cellColor(totalPP, ideal);
+
+                bodyHtml += `
+                <td class="td-rent" style="background:${col.bg};color:${col.text};">
+                    ${totalFmt}
+                    <div class="rent-tooltip">
+                        <div class="rent-tooltip-inner">
+                            <div class="tt-row"><span class="tt-label">Kreditrate</span><span>${fmtK(creditPP)}</span></div>
+                            <div class="tt-row"><span class="tt-label">Betriebskosten</span><span>${fmtK(betriebsPP)}</span></div>
+                            <div class="tt-row"><span class="tt-label">Investitionskosten</span><span>${fmtK(investPP)}</span></div>
+                            <div class="tt-row"><span class="tt-label">Rücklage</span><span>${fmtK(ruecklagePP)}</span></div>
+                            <div class="tt-row"><span class="tt-label">Gesamt</span><span>${totalFmt}</span></div>
+                        </div>
+                    </div>
+                </td>`;
+            });
+            bodyHtml += '</tr>';
+        }
+        tbody.innerHTML = bodyHtml;
+
+        saveState();
+    }
+
+    // ── Persistence ────────────────────────────────────────
+    function getState() {
+        return {
+            kaufpreisMain: kaufpreisMainEl.value,
+            modern:        modernEl.value,
+            maklerPct:     maklerPctEl.value,
+            notarPct:      notarPctEl.value,
+            gewPct:        gewPctEl.value,
+            betriebs:      betriebsEl.value,
+            invest:        investEl.value,
+            qm:            wohnflaecheEl.value,
+            ruecklageQm:   ruecklageQmEl.value,
+            ideal:         idealEl.value,
+            tranches:      JSON.stringify(tranches),
+        };
+    }
+
+    function applyState(d) {
+        if (d.kaufpreisMain != null) kaufpreisMainEl.value = d.kaufpreisMain;
+        if (d.modern        != null) modernEl.value        = d.modern;
+        if (d.maklerPct     != null) maklerPctEl.value     = d.maklerPct;
+        if (d.notarPct      != null) notarPctEl.value      = d.notarPct;
+        if (d.gewPct        != null) gewPctEl.value        = d.gewPct;
+        if (d.betriebs      != null) betriebsEl.value      = d.betriebs;
+        if (d.invest        != null) investEl.value        = d.invest;
+        if (d.qm            != null) wohnflaecheEl.value   = d.qm;
+        if (d.ruecklageQm   != null) ruecklageQmEl.value   = d.ruecklageQm;
+        if (d.ideal         != null) idealEl.value         = d.ideal;
+        if (d.tranches) {
+            try { tranches = JSON.parse(d.tranches); } catch {}
+        }
+    }
+
+    function saveState() {
+        localStorage.setItem('kreditrechner', JSON.stringify(getState()));
+    }
+
+    function loadFromLocalStorage() {
+        const saved = localStorage.getItem('kreditrechner');
+        if (saved) applyState(JSON.parse(saved));
+    }
+
+    function loadFromURL() {
+        const p = new URLSearchParams(window.location.search);
+        if (!p.size) return false;
+        const d = {};
+        for (const key of Object.keys(getState())) {
+            if (p.has(key)) d[key] = p.get(key);
+        }
+        if (!Object.keys(d).length) return false;
+        applyState(d);
+        return true;
+    }
+
+    const DEFAULTS = {
+        kaufpreisMain: '600000', modern: '400000',
+        maklerPct: '0', notarPct: '2', gewPct: '6.5',
+        betriebs: '1000', invest: '500',
+        qm: '336', ruecklageQm: '11.5', ideal: '650',
+        tranches: JSON.stringify([
+            { name: 'Bankkredit',        amount: 800000, rate: 4, years: 30 },
+            { name: 'Nachrangsdarlehen', amount: 200000, rate: 2, years: 10 },
+        ])
+    };
+
+    document.getElementById('reset-btn').addEventListener('click', function() {
+        applyState(DEFAULTS);
+        renderTranches();
+        calculate();
+    });
+
+    document.getElementById('share-btn').addEventListener('click', async function() {
+        const url = location.origin + location.pathname + '?' + new URLSearchParams(getState());
+        try {
+            await navigator.clipboard.writeText(url);
+            this.textContent = '✅ Link kopiert!';
+            setTimeout(() => { this.innerHTML = '🔗 Link teilen'; }, 2000);
+        } catch { prompt('Link zum Teilen:', url); }
+    });
+
+    // ── Init ───────────────────────────────────────────────
+    const hasURL = loadFromURL();
+    if (!hasURL) loadFromLocalStorage();
+    renderTranches();
+    calculate();
+    if (hasURL) {
+        saveState();
+        history.replaceState(null, '', location.pathname);
+    }
+</script>
+</body>
+</html>
