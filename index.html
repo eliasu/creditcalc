@@ -5,12 +5,81 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex">
     <title>Kreditrechner</title>
-    <link rel="stylesheet" href="styles.css">
     <style>
-        /* ── Layout ── */
-        .calculator-card {
-            display: block !important; /* override grid from styles.css */
+        /* ── Reset & base ── */
+        :root {
+            --primary-color: #2563eb;
+            --accent-color: #10b981;
+            --bg-color: #f3f4f6;
+            --card-bg: #ffffff;
+            --text-color: #1f2937;
+            --text-light: #6b7280;
+            --radius: 12px;
+            --shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
         }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
+        body {
+            background-color: var(--bg-color);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 16px;
+        }
+        .calculator-card {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            width: 100%;
+        }
+        label { font-size: 0.9rem; color: var(--text-light); font-weight: 600; }
+        .input-group { display: flex; flex-direction: column; gap: 0.5rem; }
+        .input-wrapper { position: relative; display: flex; align-items: center; }
+        .input-wrapper span { position: absolute; right: 15px; color: var(--text-light); font-weight: 500; }
+        input[type="number"] {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.2s;
+            -webkit-appearance: textfield;
+            appearance: textfield;
+        }
+        input[type="number"]:focus { outline: none; border-color: var(--primary-color); }
+
+        /* ── Tabs ── */
+        .tab-bar {
+            display: flex;
+            gap: 0.25rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid #e2e8f0;
+        }
+        .tab-btn {
+            background: none;
+            border: none;
+            padding: 0.6rem 1.2rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text-light);
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            margin-bottom: -2px;
+            border-radius: 6px 6px 0 0;
+            transition: color 0.15s, border-color 0.15s;
+        }
+        .tab-btn:hover { color: var(--primary-color); }
+        .tab-btn.active {
+            color: var(--primary-color);
+            border-bottom-color: var(--primary-color);
+            background: #eff6ff;
+        }
+        .tab-panel { display: none; }
+        .tab-panel.active { display: block; }
+
+        /* ── Layout ── */
         .header-row {
             display: flex;
             justify-content: space-between;
@@ -278,7 +347,7 @@
         }
         .hint--link:hover { text-decoration: underline; }
 
-        /* ── Table ── */
+        /* ── Table (Kreditrechner) ── */
         .table-col {
             position: sticky;
             top: 0;
@@ -400,6 +469,194 @@
         .tt-label { color: #9ca3af; }
 
         .ideal-box label { color: var(--primary-color); }
+
+        /* ── Mietberechnung ── */
+        .miete-grid {
+            display: grid;
+            grid-template-columns: 360px 1fr;
+            gap: 2.5rem;
+            align-items: start;
+        }
+        @media (max-width: 860px) {
+            .miete-grid { grid-template-columns: 1fr; }
+        }
+
+        /* Person cards */
+        .person-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+        }
+        .person-card {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 0.8rem 0.9rem;
+        }
+        .person-card--gelaende {
+            border-left: 3px solid #f59e0b;
+        }
+        .person-card--haus {
+            border-left: 3px solid var(--primary-color);
+        }
+        .person-header {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.6rem;
+        }
+        .person-name-input {
+            flex: 1;
+            border: none;
+            border-bottom: 1px solid #e2e8f0;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-color);
+            padding: 2px 4px;
+            background: transparent;
+            outline: none;
+        }
+        .person-name-input:focus { border-bottom-color: var(--primary-color); }
+        .person-type-select {
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 3px 6px;
+            color: var(--text-light);
+            background: #f8fafc;
+            cursor: pointer;
+            outline: none;
+        }
+        .person-type-select:focus { border-color: var(--primary-color); }
+        .person-delete {
+            background: none;
+            border: none;
+            color: #d1d5db;
+            cursor: pointer;
+            font-size: 1rem;
+            padding: 0 4px;
+            line-height: 1;
+            transition: color 0.15s;
+        }
+        .person-delete:hover { color: #ef4444; }
+        .person-detail {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .person-detail label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+            color: var(--text-light);
+            white-space: nowrap;
+        }
+        .person-detail .input-wrapper {
+            width: 110px;
+        }
+        .person-detail .input-wrapper input[type="number"] {
+            padding: 6px 32px 6px 8px;
+            font-size: 0.85rem;
+        }
+        .person-detail .input-wrapper span {
+            right: 8px;
+            font-size: 0.75rem;
+        }
+
+        /* Miete results table */
+        .miete-table-col {
+            position: sticky;
+            top: 0;
+            align-self: start;
+            overflow: visible;
+        }
+        .miete-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+        }
+        .miete-table thead tr { background: #f8fafc; }
+        .miete-table th {
+            text-align: left;
+            padding: 14px 16px;
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--text-light);
+            border-bottom: 2px solid #e2e8f0;
+            white-space: nowrap;
+        }
+        .miete-table th.miete-phase-header { text-align: center; }
+        .miete-table th .phase-sub {
+            display: block;
+            font-size: 0.65rem;
+            font-weight: 400;
+            opacity: 0.7;
+            margin-top: 3px;
+            text-transform: none;
+            letter-spacing: 0;
+        }
+        .miete-table td {
+            padding: 10px 16px;
+            border-bottom: 1px solid #f1f5f9;
+            vertical-align: middle;
+        }
+        .miete-table tr:last-child td { border-bottom: none; }
+
+        .td-person-name {
+            font-weight: 700;
+            color: var(--text-color);
+            font-size: 0.95rem;
+            white-space: nowrap;
+        }
+        .td-person-type {
+            font-size: 0.72rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+            white-space: nowrap;
+        }
+        .badge-haus { color: var(--primary-color); }
+        .badge-gelaende { color: #f59e0b; }
+
+        .td-miete-cell {
+            position: relative;
+            padding: 16px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            text-align: center;
+            cursor: default;
+            white-space: nowrap;
+            border-radius: 8px;
+        }
+        .td-miete-cell:hover .rent-tooltip {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+            pointer-events: auto;
+        }
+        .miete-info-box {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: var(--radius);
+            padding: 1rem 1.1rem;
+            margin-top: 1rem;
+        }
+        .miete-info-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.82rem;
+            color: var(--text-light);
+            padding: 0.2rem 0;
+        }
+        .miete-info-row .sum-val { font-weight: 600; color: var(--text-color); }
+        .miete-empty {
+            text-align: center;
+            color: var(--text-light);
+            font-size: 0.9rem;
+            padding: 3rem 0;
+        }
     </style>
 </head>
 <body>
@@ -413,147 +670,197 @@
         </div>
     </div>
 
-    <div class="main-grid">
-
-        <!-- ── INPUTS ── -->
-        <div class="inputs-col">
-
-            <span class="section-label">Kaufpreis &amp; Nebenkosten</span>
-
-            <div class="form-section">
-                <div class="input-group">
-                    <label for="kaufpreis-main">Kaufpreis</label>
-                    <div class="input-wrapper">
-                        <input type="number" id="kaufpreis-main" value="600000" min="0" step="5000">
-                        <span>€</span>
-                    </div>
-                </div>
-                <div class="input-group">
-                    <label for="modernisierung">Modernisierungskosten</label>
-                    <div class="input-wrapper">
-                        <input type="number" id="modernisierung" value="400000" min="0" step="1000">
-                        <span>€</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="box">
-                <div class="box-title">Kaufnebenkosten</div>
-                <div class="cost-row">
-                    <label for="makler-pct">Maklerprovision</label>
-                    <div class="input-wrapper--sm">
-                        <input type="number" id="makler-pct" value="0" min="0" max="10" step="0.1">
-                        <span>%</span>
-                    </div>
-                    <span id="makler-abs" class="abs-val">–</span>
-                </div>
-                <div class="cost-row">
-                    <label for="notar-pct">Notar &amp; Grundbuch</label>
-                    <div class="input-wrapper--sm">
-                        <input type="number" id="notar-pct" value="2" min="0" max="5" step="0.1">
-                        <span>%</span>
-                    </div>
-                    <span id="notar-abs" class="abs-val">–</span>
-                </div>
-                <div class="cost-row">
-                    <label for="gew-pct">Grunderwerbsteuer</label>
-                    <div class="input-wrapper--sm">
-                        <input type="number" id="gew-pct" value="6.5" min="0" max="10" step="0.1">
-                        <span>%</span>
-                    </div>
-                    <span id="gew-abs" class="abs-val">–</span>
-                </div>
-                <div class="sum-row sum-row--divider" style="margin-top:0.6rem;">
-                    <span>Nebenkosten gesamt</span>
-                    <span id="neben-total" class="sum-val">–</span>
-                </div>
-            </div>
-
-            <div class="box box--blue">
-                <div class="kreditbetrag-row">
-                    <span class="kreditbetrag-label">Kreditbetrag (gesamt)</span>
-                    <span id="kreditbetrag-display" class="kreditbetrag-value">–</span>
-                </div>
-            </div>
-
-            <span class="section-label">Kreditposten</span>
-
-            <div class="tranche-list" id="tranche-list"></div>
-
-            <div class="alloc-bar"><div class="alloc-bar-fill" id="alloc-bar-fill"></div></div>
-            <div class="alloc-label" id="alloc-label">–</div>
-
-            <button class="add-tranche-btn" id="add-tranche-btn">+ Kreditposten hinzufügen</button>
-
-            <span class="section-label">Kosten / Monat</span>
-
-            <div class="form-section">
-                <div class="input-group">
-                    <label for="betriebskosten">Betriebskosten (Gesamt)</label>
-                    <div class="input-wrapper">
-                        <input type="number" id="betriebskosten" value="1000" min="0" step="10">
-                        <span>€</span>
-                    </div>
-                </div>
-                <div class="input-group">
-                    <label for="investitionskosten">Investitionskosten (Gesamt)</label>
-                    <div class="input-wrapper">
-                        <input type="number" id="investitionskosten" value="500" min="0" step="10">
-                        <span>€</span>
-                    </div>
-                </div>
-            </div>
-
-            <span class="section-label">Instandhaltungsrücklage</span>
-
-            <div class="form-section">
-                <div class="input-group">
-                    <label for="wohnflaeche">Wohnfläche</label>
-                    <div class="input-wrapper">
-                        <input type="number" id="wohnflaeche" value="336" min="0" step="10">
-                        <span>m²</span>
-                    </div>
-                </div>
-                <div class="input-group">
-                    <label for="ruecklage-qm">Rücklage pro m² / Jahr</label>
-                    <span class="hint">Faustregel: 7–10 € Neubau · 10–15 € Altbau</span>
-                    <div class="input-wrapper">
-                        <input type="number" id="ruecklage-qm" value="11.5" min="0.5" max="50" step="0.5">
-                        <span>€</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="box--ideal">
-                <div class="input-group">
-                    <label for="ideal" style="color:var(--primary-color);">Idealvorstellung / Person / Monat</label>
-                    <div class="input-wrapper">
-                        <input type="number" id="ideal" value="650" min="0" step="10">
-                        <span>€</span>
-                    </div>
-                    <span class="hint">Dient nur zur Einfärbung der Tabellenzellen.</span>
-                </div>
-            </div>
-
-            <div class="box">
-                <div class="box-title">Kredit-Zusammenfassung</div>
-                <div id="summary-rows"></div>
-            </div>
-
-        </div>
-
-        <!-- ── TABLE ── -->
-        <div class="table-col">
-            <table class="people-table">
-                <colgroup id="table-cols">
-                    <col class="col-people">
-                </colgroup>
-                <thead id="table-head"></thead>
-                <tbody id="table-body"></tbody>
-            </table>
-        </div>
-
+    <!-- Tab bar -->
+    <div class="tab-bar">
+        <button class="tab-btn active" data-tab="kredit">Kreditrechner</button>
+        <button class="tab-btn" data-tab="miete">Mietberechnung</button>
     </div>
+
+    <!-- ── TAB 1: Kreditrechner ── -->
+    <div id="tab-kredit" class="tab-panel active">
+        <div class="main-grid">
+
+            <!-- INPUTS -->
+            <div class="inputs-col">
+
+                <span class="section-label">Kaufpreis &amp; Nebenkosten</span>
+
+                <div class="form-section">
+                    <div class="input-group">
+                        <label for="kaufpreis-main">Kaufpreis</label>
+                        <div class="input-wrapper">
+                            <input type="number" id="kaufpreis-main" value="600000" min="0" step="5000">
+                            <span>€</span>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label for="modernisierung">Modernisierungskosten</label>
+                        <div class="input-wrapper">
+                            <input type="number" id="modernisierung" value="400000" min="0" step="1000">
+                            <span>€</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="box">
+                    <div class="box-title">Kaufnebenkosten</div>
+                    <div class="cost-row">
+                        <label for="makler-pct">Maklerprovision</label>
+                        <div class="input-wrapper--sm">
+                            <input type="number" id="makler-pct" value="0" min="0" max="10" step="0.1">
+                            <span>%</span>
+                        </div>
+                        <span id="makler-abs" class="abs-val">–</span>
+                    </div>
+                    <div class="cost-row">
+                        <label for="notar-pct">Notar &amp; Grundbuch</label>
+                        <div class="input-wrapper--sm">
+                            <input type="number" id="notar-pct" value="2" min="0" max="5" step="0.1">
+                            <span>%</span>
+                        </div>
+                        <span id="notar-abs" class="abs-val">–</span>
+                    </div>
+                    <div class="cost-row">
+                        <label for="gew-pct">Grunderwerbsteuer</label>
+                        <div class="input-wrapper--sm">
+                            <input type="number" id="gew-pct" value="6.5" min="0" max="10" step="0.1">
+                            <span>%</span>
+                        </div>
+                        <span id="gew-abs" class="abs-val">–</span>
+                    </div>
+                    <div class="sum-row sum-row--divider" style="margin-top:0.6rem;">
+                        <span>Nebenkosten gesamt</span>
+                        <span id="neben-total" class="sum-val">–</span>
+                    </div>
+                </div>
+
+                <div class="box box--blue">
+                    <div class="kreditbetrag-row">
+                        <span class="kreditbetrag-label">Kreditbetrag (gesamt)</span>
+                        <span id="kreditbetrag-display" class="kreditbetrag-value">–</span>
+                    </div>
+                </div>
+
+                <span class="section-label">Kreditposten</span>
+
+                <div class="tranche-list" id="tranche-list"></div>
+
+                <div class="alloc-bar"><div class="alloc-bar-fill" id="alloc-bar-fill"></div></div>
+                <div class="alloc-label" id="alloc-label">–</div>
+
+                <button class="add-tranche-btn" id="add-tranche-btn">+ Kreditposten hinzufügen</button>
+
+                <span class="section-label">Kosten / Monat</span>
+
+                <div class="form-section">
+                    <div class="input-group">
+                        <label for="betriebskosten">Betriebskosten (Gesamt)</label>
+                        <div class="input-wrapper">
+                            <input type="number" id="betriebskosten" value="1000" min="0" step="10">
+                            <span>€</span>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label for="investitionskosten">Investitionskosten (Gesamt)</label>
+                        <div class="input-wrapper">
+                            <input type="number" id="investitionskosten" value="500" min="0" step="10">
+                            <span>€</span>
+                        </div>
+                    </div>
+                </div>
+
+                <span class="section-label">Instandhaltungsrücklage</span>
+
+                <div class="form-section">
+                    <div class="input-group">
+                        <label for="wohnflaeche">Wohnfläche</label>
+                        <div class="input-wrapper">
+                            <input type="number" id="wohnflaeche" value="336" min="0" step="10">
+                            <span>m²</span>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label for="ruecklage-qm">Rücklage pro m² / Jahr</label>
+                        <span class="hint">Faustregel: 7–10 € Neubau · 10–15 € Altbau</span>
+                        <div class="input-wrapper">
+                            <input type="number" id="ruecklage-qm" value="11.5" min="0.5" max="50" step="0.5">
+                            <span>€</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="box--ideal">
+                    <div class="input-group">
+                        <label for="ideal" style="color:var(--primary-color);">Idealvorstellung / Person / Monat</label>
+                        <div class="input-wrapper">
+                            <input type="number" id="ideal" value="650" min="0" step="10">
+                            <span>€</span>
+                        </div>
+                        <span class="hint">Dient nur zur Einfärbung der Tabellenzellen.</span>
+                    </div>
+                </div>
+
+                <div class="box">
+                    <div class="box-title">Kredit-Zusammenfassung</div>
+                    <div id="summary-rows"></div>
+                </div>
+
+            </div>
+
+            <!-- TABLE -->
+            <div class="table-col">
+                <table class="people-table">
+                    <colgroup id="table-cols">
+                        <col class="col-people">
+                    </colgroup>
+                    <thead id="table-head"></thead>
+                    <tbody id="table-body"></tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ── TAB 2: Mietberechnung ── -->
+    <div id="tab-miete" class="tab-panel">
+        <div class="miete-grid">
+
+            <!-- INPUTS -->
+            <div class="inputs-col">
+
+                <span class="section-label">Hausparameter</span>
+
+                <div class="form-section">
+                    <div class="input-group">
+                        <label for="haus-gesamt-qm">Gesamt-Wohnfläche Haus</label>
+                        <span class="hint">Gemeinschaftsfläche = Gesamt − Σ private qm</span>
+                        <div class="input-wrapper">
+                            <input type="number" id="haus-gesamt-qm" value="200" min="0" step="5">
+                            <span>m²</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="box" id="miete-qm-info" style="display:none;">
+                    <div id="miete-qm-info-rows"></div>
+                </div>
+
+                <span class="section-label">Bewohner</span>
+
+                <div class="person-list" id="person-list"></div>
+
+                <button class="add-tranche-btn" id="add-person-btn">+ Bewohner hinzufügen</button>
+
+            </div>
+
+            <!-- RESULTS -->
+            <div class="miete-table-col">
+                <div id="miete-results"></div>
+            </div>
+
+        </div>
+    </div>
+
 </div>
 
 <script>
@@ -561,6 +868,12 @@
     let tranches = [
         { name: 'Bankkredit',          amount: 800000, rate: 4,   years: 30 },
         { name: 'Nachrangsdarlehen',   amount: 200000, rate: 2,   years: 10 },
+    ];
+
+    let bewohner = [
+        { name: 'Person 1', type: 'haus',     qm: 25,  pauschale: 0   },
+        { name: 'Person 2', type: 'haus',     qm: 20,  pauschale: 0   },
+        { name: 'Bauwagen', type: 'gelaende', qm: 0,   pauschale: 150 },
     ];
 
     // ── Static inputs ──────────────────────────────────────
@@ -574,9 +887,11 @@
     const wohnflaecheEl   = document.getElementById('wohnflaeche');
     const ruecklageQmEl   = document.getElementById('ruecklage-qm');
     const idealEl         = document.getElementById('ideal');
+    const hausGesamtQmEl  = document.getElementById('haus-gesamt-qm');
 
-    const fmt = new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'EUR' });
+    const fmt  = new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'EUR' });
     const fmtK = v => fmt.format(v);
+    const fmtN = (v, d=1) => new Intl.NumberFormat('de-DE', { minimumFractionDigits: d, maximumFractionDigits: d }).format(v);
 
     // ── Annuity ────────────────────────────────────────────
     function annuity(principal, ratePercent, years) {
@@ -657,12 +972,86 @@
         calculate();
     });
 
+    // ── Render person list ─────────────────────────────────
+    function renderBewohner() {
+        const list = document.getElementById('person-list');
+        list.innerHTML = '';
+
+        bewohner.forEach((b, i) => {
+            const card = document.createElement('div');
+            card.className = `person-card person-card--${b.type}`;
+
+            const detailHtml = b.type === 'haus'
+                ? `<div class="person-detail">
+                    <label>Zimmergröße</label>
+                    <div class="input-wrapper">
+                        <input type="number" value="${b.qm}" min="0" step="1" data-i="${i}" data-f="qm">
+                        <span>m²</span>
+                    </div>
+                   </div>`
+                : `<div class="person-detail">
+                    <label>Pauschale/Mo</label>
+                    <div class="input-wrapper">
+                        <input type="number" value="${b.pauschale}" min="0" step="10" data-i="${i}" data-f="pauschale">
+                        <span>€</span>
+                    </div>
+                   </div>`;
+
+            card.innerHTML = `
+                <div class="person-header">
+                    <input class="person-name-input" type="text" value="${b.name}" placeholder="Name" data-i="${i}" data-f="name">
+                    <select class="person-type-select" data-i="${i}">
+                        <option value="haus"     ${b.type === 'haus'     ? 'selected' : ''}>Hausbewohner</option>
+                        <option value="gelaende" ${b.type === 'gelaende' ? 'selected' : ''}>Geländebewohner</option>
+                    </select>
+                    ${bewohner.length > 1 ? `<button class="person-delete" data-i="${i}" title="Entfernen">×</button>` : ''}
+                </div>
+                ${detailHtml}`;
+
+            list.appendChild(card);
+        });
+
+        list.querySelectorAll('.person-name-input').forEach(el => el.addEventListener('input', e => {
+            bewohner[parseInt(e.target.dataset.i)].name = e.target.value;
+            calculate();
+        }));
+        list.querySelectorAll('.person-type-select').forEach(el => el.addEventListener('change', e => {
+            bewohner[parseInt(e.target.dataset.i)].type = e.target.value;
+            renderBewohner();
+            calculate();
+        }));
+        list.querySelectorAll('input[data-f="qm"]').forEach(el => el.addEventListener('input', e => {
+            bewohner[parseInt(e.target.dataset.i)].qm = parseFloat(e.target.value) || 0;
+            calculate();
+        }));
+        list.querySelectorAll('input[data-f="pauschale"]').forEach(el => el.addEventListener('input', e => {
+            bewohner[parseInt(e.target.dataset.i)].pauschale = parseFloat(e.target.value) || 0;
+            calculate();
+        }));
+        list.querySelectorAll('.person-delete').forEach(btn => btn.addEventListener('click', e => {
+            bewohner.splice(parseInt(e.currentTarget.dataset.i), 1);
+            renderBewohner();
+            calculate();
+        }));
+    }
+
+    document.getElementById('add-person-btn').addEventListener('click', () => {
+        bewohner.push({ name: `Person ${bewohner.length + 1}`, type: 'haus', qm: 20, pauschale: 0 });
+        renderBewohner();
+        calculate();
+    });
+
+    hausGesamtQmEl.addEventListener('input', calculate);
+
     // ── Static input listeners ─────────────────────────────
     [kaufpreisMainEl, modernEl, maklerPctEl, notarPctEl, gewPctEl,
      betriebsEl, investEl, wohnflaecheEl, ruecklageQmEl, idealEl
     ].forEach(el => el.addEventListener('input', calculate));
 
     // ── Main calculation ───────────────────────────────────
+    let lastPhases = [];
+    let lastFixedMonthly = 0;
+
     function calculate() {
         // Kaufpreis & Nebenkosten
         const kaufpreisVal = parseFloat(kaufpreisMainEl.value) || 0;
@@ -688,18 +1077,18 @@
         const allocPct  = kreditTotal > 0 ? Math.min(allocated / kreditTotal, 1) : 0;
         const diff      = kreditTotal - allocated;
         const fill      = document.getElementById('alloc-bar-fill');
-        const label     = document.getElementById('alloc-label');
+        const allocLbl  = document.getElementById('alloc-label');
         fill.style.width      = (allocPct * 100) + '%';
         fill.style.background = Math.abs(diff) < 1 ? '#10b981' : diff > 0 ? '#f59e0b' : '#ef4444';
         if (Math.abs(diff) < 1) {
-            label.textContent = '✓ Vollständig aufgeteilt';
-            label.style.color = '#10b981';
+            allocLbl.textContent = '✓ Vollständig aufgeteilt';
+            allocLbl.style.color = '#10b981';
         } else if (diff > 0) {
-            label.textContent = `Noch zuzuweisen: ${fmtK(diff)}`;
-            label.style.color = '#f59e0b';
+            allocLbl.textContent = `Noch zuzuweisen: ${fmtK(diff)}`;
+            allocLbl.style.color = '#f59e0b';
         } else {
-            label.textContent = `Übersteigt Kreditbetrag um ${fmtK(-diff)}`;
-            label.style.color = '#ef4444';
+            allocLbl.textContent = `Übersteigt Kreditbetrag um ${fmtK(-diff)}`;
+            allocLbl.style.color = '#ef4444';
         }
 
         // Running costs
@@ -714,15 +1103,17 @@
         // Phases: unique sorted loan end-years
         const endYears = [...new Set(tranches.map(t => t.years))].sort((a, b) => a - b);
 
-        // For each phase, compute which tranches are still running and total monthly payment
         const phases = [];
         let prevYear = 0;
         for (const endYear of endYears) {
-            const active = tranches.filter(t => t.years >= endYear);
+            const active  = tranches.filter(t => t.years >= endYear);
             const monthly = active.reduce((s, t) => s + annuity(t.amount, t.rate, t.years), 0);
             phases.push({ fromYear: prevYear + 1, toYear: endYear, monthly, active });
             prevYear = endYear;
         }
+
+        lastPhases       = phases;
+        lastFixedMonthly = fixedMonthly;
 
         // Summary box
         const summaryEl = document.getElementById('summary-rows');
@@ -783,8 +1174,165 @@
         }
         tbody.innerHTML = bodyHtml;
 
+        calculateMiete(phases, fixedMonthly, betriebs, invest, ruecklageMonth);
+
         saveState();
     }
+
+    // ── Mietberechnung ─────────────────────────────────────
+    function calculateMiete(phases, fixedMonthly, betriebs, invest, ruecklageMonth) {
+        const hausGesamtQm = parseFloat(hausGesamtQmEl.value) || 0;
+
+        const hausBewohner    = bewohner.filter(b => b.type === 'haus');
+        const gelaendeBewohner = bewohner.filter(b => b.type === 'gelaende');
+
+        const sumPrivateQm    = hausBewohner.reduce((s, b) => s + (b.qm || 0), 0);
+        const gemeinschaftsQm = Math.max(0, hausGesamtQm - sumPrivateQm);
+        const gelaendePauschalen = gelaendeBewohner.reduce((s, b) => s + (b.pauschale || 0), 0);
+
+        // Info box
+        const infoBox  = document.getElementById('miete-qm-info');
+        const infoRows = document.getElementById('miete-qm-info-rows');
+        if (hausGesamtQm > 0 || bewohner.length > 0) {
+            infoBox.style.display = 'block';
+            infoRows.innerHTML = `
+                <div class="miete-info-row"><span>Gesamt Haus</span><span class="sum-val">${fmtN(hausGesamtQm)} m²</span></div>
+                <div class="miete-info-row"><span>Private Flächen (Σ)</span><span class="sum-val">${fmtN(sumPrivateQm)} m²</span></div>
+                <div class="miete-info-row" style="border-top:1px solid #e2e8f0;margin-top:0.25rem;padding-top:0.35rem;">
+                    <span>Gemeinschaftsfläche</span><span class="sum-val">${fmtN(gemeinschaftsQm)} m²</span>
+                </div>
+                <div class="miete-info-row" style="margin-top:0.5rem;"><span>Geländepauschalen (Σ)</span><span class="sum-val">${fmtK(gelaendePauschalen)}/Mo</span></div>`;
+        } else {
+            infoBox.style.display = 'none';
+        }
+
+        const resultsEl = document.getElementById('miete-results');
+
+        if (bewohner.length === 0) {
+            resultsEl.innerHTML = '<div class="miete-empty">Keine Bewohner eingetragen.</div>';
+            return;
+        }
+        if (hausBewohner.length > 0 && hausGesamtQm <= 0) {
+            resultsEl.innerHTML = '<div class="miete-empty">Bitte Gesamt-Wohnfläche des Hauses eintragen.</div>';
+            return;
+        }
+        if (sumPrivateQm > hausGesamtQm && hausGesamtQm > 0) {
+            resultsEl.innerHTML = `<div class="miete-empty" style="color:#ef4444;">Private Flächen (${fmtN(sumPrivateQm)} m²) übersteigen Gesamt-Fläche (${fmtN(hausGesamtQm)} m²).</div>`;
+            return;
+        }
+
+        // Build table
+        let html = `<table class="miete-table"><thead><tr>
+            <th>Bewohner</th>
+            <th>Typ</th>
+            <th>Details</th>`;
+
+        phases.forEach(ph => {
+            const yLabel = ph.fromYear === ph.toYear ? `Jahr ${ph.fromYear}` : `Jahr ${ph.fromYear}–${ph.toYear}`;
+            const sub    = ph.active.map(t => t.name || 'Kredit').join(', ');
+            html += `<th class="miete-phase-header">${yLabel}<span class="phase-sub">${sub}</span></th>`;
+        });
+        html += '</tr></thead><tbody>';
+
+        bewohner.forEach(b => {
+            html += `<tr>
+                <td class="td-person-name">${b.name || '–'}</td>
+                <td class="td-person-type ${b.type === 'haus' ? 'badge-haus' : 'badge-gelaende'}">
+                    ${b.type === 'haus' ? 'Haus' : 'Gelände'}
+                </td>
+                <td style="font-size:0.8rem;color:var(--text-light);">
+                    ${b.type === 'haus'
+                        ? `${fmtN(b.qm)} m² privat`
+                        : `${fmtK(b.pauschale)}/Mo Pauschale`}
+                </td>`;
+
+            phases.forEach(ph => {
+                const totalMonthly = ph.monthly + fixedMonthly;
+                let miete, tooltip;
+
+                if (b.type === 'gelaende') {
+                    miete = b.pauschale;
+                    tooltip = `<div class="tt-row"><span class="tt-label">Pauschale</span><span>${fmtK(miete)}</span></div>
+                               <div class="tt-row"><span class="tt-label">Gesamt</span><span>${fmtK(miete)}</span></div>`;
+                } else {
+                    const hauskosten    = totalMonthly - gelaendePauschalen;
+                    const costPerQm     = hausGesamtQm > 0 ? hauskosten / hausGesamtQm : 0;
+                    const gemeinsAnteil = hausBewohner.length > 0
+                        ? (gemeinschaftsQm * costPerQm) / hausBewohner.length
+                        : 0;
+                    const privatAnteil  = b.qm * costPerQm;
+                    miete = gemeinsAnteil + privatAnteil;
+
+                    const gemeinsQmAnteil = hausBewohner.length > 0
+                        ? gemeinschaftsQm / hausBewohner.length
+                        : 0;
+
+                    tooltip = `
+                        <div class="tt-row"><span class="tt-label">Gesamtkosten/Mo</span><span>${fmtK(totalMonthly)}</span></div>
+                        <div class="tt-row"><span class="tt-label">− Geländepauschalen</span><span>− ${fmtK(gelaendePauschalen)}</span></div>
+                        <div class="tt-row"><span class="tt-label">= Hauskosten/Mo</span><span>${fmtK(hauskosten)}</span></div>
+                        <div class="tt-row"><span class="tt-label">€/m²</span><span>${fmtN(costPerQm, 2)}</span></div>
+                        <div class="tt-row"><span class="tt-label">Gemeinschaft (${fmtN(gemeinsQmAnteil,1)} m²)</span><span>${fmtK(gemeinsAnteil)}</span></div>
+                        <div class="tt-row"><span class="tt-label">Zimmer (${fmtN(b.qm,1)} m²)</span><span>${fmtK(privatAnteil)}</span></div>
+                        <div class="tt-row"><span class="tt-label">Gesamt</span><span>${fmtK(miete)}</span></div>`;
+                }
+
+                html += `<td>
+                    <div class="td-miete-cell">
+                        ${fmtK(miete)}
+                        <div class="rent-tooltip">
+                            <div class="rent-tooltip-inner">
+                                ${tooltip}
+                            </div>
+                        </div>
+                    </div>
+                </td>`;
+            });
+
+            html += '</tr>';
+        });
+
+        // Totals row
+        html += `<tr style="background:#f8fafc;">
+            <td class="td-person-name" style="font-size:0.8rem;color:var(--text-light);">Summe</td>
+            <td></td><td></td>`;
+        phases.forEach(ph => {
+            const totalMonthly = ph.monthly + fixedMonthly;
+            let summe = 0;
+            bewohner.forEach(b => {
+                if (b.type === 'gelaende') {
+                    summe += b.pauschale;
+                } else {
+                    const hauskosten   = totalMonthly - gelaendePauschalen;
+                    const costPerQm    = hausGesamtQm > 0 ? hauskosten / hausGesamtQm : 0;
+                    const gemeinsAnteil = hausBewohner.length > 0
+                        ? (gemeinschaftsQm * costPerQm) / hausBewohner.length : 0;
+                    summe += gemeinsAnteil + b.qm * costPerQm;
+                }
+            });
+            const diff = summe - (ph.monthly + fixedMonthly);
+            const diffColor = Math.abs(diff) < 0.5 ? '#10b981' : '#ef4444';
+            html += `<td style="text-align:center;padding:10px 16px;">
+                <div style="font-weight:700;font-size:0.9rem;">${fmtK(summe)}</div>
+                <div style="font-size:0.72rem;color:${diffColor};margin-top:2px;">
+                    ${Math.abs(diff) < 0.5 ? '✓ Ausgeglichen' : `Δ ${fmtK(diff)}`}
+                </div>
+            </td>`;
+        });
+        html += '</tr></tbody></table>';
+
+        resultsEl.innerHTML = html;
+    }
+
+    // ── Tab switching ──────────────────────────────────────
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+            btn.classList.add('active');
+            document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+        });
+    });
 
     // ── Persistence ────────────────────────────────────────
     function getState() {
@@ -800,6 +1348,8 @@
             ruecklageQm:   ruecklageQmEl.value,
             ideal:         idealEl.value,
             tranches:      JSON.stringify(tranches),
+            hausGesamtQm:  hausGesamtQmEl.value,
+            bewohner:      JSON.stringify(bewohner),
         };
     }
 
@@ -814,8 +1364,12 @@
         if (d.qm            != null) wohnflaecheEl.value   = d.qm;
         if (d.ruecklageQm   != null) ruecklageQmEl.value   = d.ruecklageQm;
         if (d.ideal         != null) idealEl.value         = d.ideal;
+        if (d.hausGesamtQm  != null) hausGesamtQmEl.value  = d.hausGesamtQm;
         if (d.tranches) {
             try { tranches = JSON.parse(d.tranches); } catch {}
+        }
+        if (d.bewohner) {
+            try { bewohner = JSON.parse(d.bewohner); } catch {}
         }
     }
 
@@ -848,12 +1402,19 @@
         tranches: JSON.stringify([
             { name: 'Bankkredit',        amount: 800000, rate: 4, years: 30 },
             { name: 'Nachrangsdarlehen', amount: 200000, rate: 2, years: 10 },
-        ])
+        ]),
+        hausGesamtQm: '200',
+        bewohner: JSON.stringify([
+            { name: 'Person 1', type: 'haus',     qm: 25,  pauschale: 0   },
+            { name: 'Person 2', type: 'haus',     qm: 20,  pauschale: 0   },
+            { name: 'Bauwagen', type: 'gelaende', qm: 0,   pauschale: 150 },
+        ]),
     };
 
     document.getElementById('reset-btn').addEventListener('click', function() {
         applyState(DEFAULTS);
         renderTranches();
+        renderBewohner();
         calculate();
     });
 
@@ -870,6 +1431,7 @@
     const hasURL = loadFromURL();
     if (!hasURL) loadFromLocalStorage();
     renderTranches();
+    renderBewohner();
     calculate();
     if (hasURL) {
         saveState();
