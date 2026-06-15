@@ -1261,7 +1261,13 @@
             const el = resultsEl.querySelector(`[data-i="${focusI}"][data-f="${focusF}"]`);
             if (el?.tagName === 'INPUT') {
                 el.focus();
-                try { el.setSelectionRange(selStart, selEnd); } catch {}
+                if (el.type === 'number') {
+                    // selectionStart/End are always null for number inputs;
+                    // re-assign value to move cursor to end
+                    const v = el.value; el.value = ''; el.value = v;
+                } else if (selStart !== null) {
+                    try { el.setSelectionRange(selStart, selEnd); } catch {}
+                }
             }
         }
 
@@ -1304,7 +1310,15 @@
             tr.addEventListener('dragstart', e => {
                 dragSrcIdx = idx;
                 e.dataTransfer.effectAllowed = 'move';
-                setTimeout(() => tr.classList.add('dragging'), 0);
+                // Build an isolated ghost so the browser doesn't snapshot surrounding rows
+                const ghostTable = document.createElement('table');
+                ghostTable.style.cssText = 'position:fixed;top:-9999px;left:-9999px;border-collapse:collapse;background:#fff;font-size:inherit;';
+                const ghostTbody = document.createElement('tbody');
+                ghostTbody.appendChild(tr.cloneNode(true));
+                ghostTable.appendChild(ghostTbody);
+                document.body.appendChild(ghostTable);
+                e.dataTransfer.setDragImage(ghostTable, e.offsetX, e.offsetY);
+                setTimeout(() => { document.body.removeChild(ghostTable); tr.classList.add('dragging'); }, 0);
             });
             tr.addEventListener('dragend', () => {
                 tr.classList.remove('dragging');
