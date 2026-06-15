@@ -122,10 +122,7 @@
             border-radius: var(--radius);
             padding: 1rem 1.1rem;
         }
-        .box--blue {
-            background: #eff6ff;
-            border-color: #bfdbfe;
-        }
+        .box--blue { background: #eff6ff; border-color: #bfdbfe; }
         .box--ideal {
             background: #eff6ff;
             border-color: #bfdbfe;
@@ -147,11 +144,7 @@
             color: var(--text-light);
             padding: 0.2rem 0;
         }
-        .sum-row + .sum-row { border-top: none; }
-        .sum-val {
-            font-weight: 600;
-            color: var(--text-color);
-        }
+        .sum-val { font-weight: 600; color: var(--text-color); }
         .sum-row--divider {
             border-top: 1px solid #e2e8f0;
             margin-top: 0.25rem;
@@ -201,43 +194,19 @@
         }
 
         /* ── Kreditbetrag display ── */
-        .kreditbetrag-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .kreditbetrag-label {
-            font-size: 0.85rem;
-            font-weight: 600;
-            color: var(--primary-color);
-        }
-        .kreditbetrag-value {
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: var(--primary-color);
-        }
-        .kreditbetrag-ideal { color: #10b981; }
-        .kreditbetrag-warn  { color: #f59e0b; }
-        .kreditbetrag-over  { color: #ef4444; }
+        .kreditbetrag-row { display: flex; justify-content: space-between; align-items: center; }
+        .kreditbetrag-label { font-size: 0.85rem; font-weight: 600; color: var(--primary-color); }
+        .kreditbetrag-value { font-size: 1.1rem; font-weight: 700; color: var(--primary-color); }
 
         /* ── Tranche list ── */
-        .tranche-list {
-            display: flex;
-            flex-direction: column;
-            gap: 0.6rem;
-        }
+        .tranche-list { display: flex; flex-direction: column; gap: 0.6rem; }
         .tranche-card {
             background: white;
             border: 1px solid #e2e8f0;
             border-radius: 10px;
             padding: 0.8rem 0.9rem;
         }
-        .tranche-header {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            margin-bottom: 0.6rem;
-        }
+        .tranche-header { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.6rem; }
         .tranche-name {
             flex: 1;
             border: none;
@@ -262,11 +231,7 @@
             transition: color 0.15s;
         }
         .tranche-delete:hover { color: #ef4444; }
-        .tranche-fields {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            gap: 0.5rem;
-        }
+        .tranche-fields { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.5rem; }
         .tranche-field label {
             font-size: 0.7rem;
             font-weight: 600;
@@ -276,14 +241,8 @@
             text-transform: uppercase;
             letter-spacing: 0.4px;
         }
-        .tranche-field .input-wrapper input[type="number"] {
-            padding: 6px 28px 6px 8px;
-            font-size: 0.85rem;
-        }
-        .tranche-field .input-wrapper span {
-            right: 8px;
-            font-size: 0.75rem;
-        }
+        .tranche-field .input-wrapper input[type="number"] { padding: 6px 28px 6px 8px; font-size: 0.85rem; }
+        .tranche-field .input-wrapper span { right: 8px; font-size: 0.75rem; }
         .add-tranche-btn {
             background: none;
             border: 1px dashed #cbd5e1;
@@ -295,29 +254,10 @@
             color: var(--text-light);
             transition: all 0.15s;
         }
-        .add-tranche-btn:hover {
-            border-color: var(--primary-color);
-            color: var(--primary-color);
-            background: #eff6ff;
-        }
-        .alloc-bar {
-            height: 4px;
-            border-radius: 2px;
-            background: #e2e8f0;
-            margin: 0.3rem 0 0.5rem;
-            overflow: hidden;
-        }
-        .alloc-bar-fill {
-            height: 100%;
-            border-radius: 2px;
-            transition: width 0.2s, background 0.2s;
-        }
-        .alloc-label {
-            font-size: 0.75rem;
-            color: var(--text-light);
-            text-align: right;
-            margin-bottom: 0.5rem;
-        }
+        .add-tranche-btn:hover { border-color: var(--primary-color); color: var(--primary-color); background: #eff6ff; }
+        .alloc-bar { height: 4px; border-radius: 2px; background: #e2e8f0; margin: 0.3rem 0 0.5rem; overflow: hidden; }
+        .alloc-bar-fill { height: 100%; border-radius: 2px; transition: width 0.2s, background 0.2s; }
+        .alloc-label { font-size: 0.75rem; color: var(--text-light); text-align: right; margin-bottom: 0.5rem; }
 
         /* ── Share btn ── */
         .share-btn {
@@ -336,37 +276,14 @@
         .share-btn:hover { background: #1d4ed8; }
 
         /* ── Hint ── */
-        .hint {
-            font-size: 0.7rem;
-            color: var(--text-light);
-            display: block;
-        }
-        .hint--link {
-            color: var(--primary-color);
-            text-decoration: none;
-        }
-        .hint--link:hover { text-decoration: underline; }
+        .hint { font-size: 0.7rem; color: var(--text-light); display: block; }
 
         /* ── Table (Kreditrechner) ── */
-        .table-col {
-            position: sticky;
-            top: 0;
-            align-self: start;
-            overflow: visible;
-        }
-
-        .people-table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 0.9rem;
-            table-layout: fixed;
-        }
+        .table-col { position: sticky; top: 0; align-self: start; overflow: visible; }
+        .people-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; table-layout: fixed; }
         .people-table col.col-people { width: 80px; }
         .people-table col.col-phase  { width: auto; }
-
-        .people-table thead tr {
-            background: #f8fafc;
-        }
+        .people-table thead tr { background: #f8fafc; }
         .people-table th {
             text-align: left;
             padding: 14px 28px;
@@ -377,9 +294,7 @@
             border-bottom: 2px solid #e2e8f0;
             white-space: nowrap;
         }
-        .people-table th.phase-header {
-            text-align: center;
-        }
+        .people-table th.phase-header { text-align: center; }
         .people-table th .phase-sub {
             display: block;
             font-size: 0.65rem;
@@ -389,22 +304,10 @@
             text-transform: none;
             letter-spacing: 0;
         }
-        .people-table td {
-            padding: 8px;
-            border-bottom: 1px solid #f1f5f9;
-            vertical-align: middle;
-        }
+        .people-table td { padding: 8px; border-bottom: 1px solid #f1f5f9; vertical-align: middle; }
         .people-table tr:last-child td { border-bottom: none; }
         .people-table tr:hover .td-people { background: #f8fafc; }
-
-        .td-people {
-            padding: 30px 28px;
-            font-weight: 700;
-            color: var(--text-color);
-            font-size: 1.05rem;
-            background: white;
-            white-space: nowrap;
-        }
+        .td-people { padding: 30px 28px; font-weight: 700; color: var(--text-color); font-size: 1.05rem; background: white; white-space: nowrap; }
 
         /* ── Rent cell with tooltip ── */
         .td-rent {
@@ -416,7 +319,8 @@
             cursor: default;
             white-space: nowrap;
         }
-        .td-rent:hover .rent-tooltip {
+        .td-rent:hover .rent-tooltip,
+        .td-miete-cell:hover .rent-tooltip {
             opacity: 1;
             transform: translateX(-50%) translateY(0);
             pointer-events: auto;
@@ -453,135 +357,112 @@
             border-right: 5px solid transparent;
             border-bottom: 5px solid #1f2937;
         }
-        .tt-row {
-            display: flex;
-            justify-content: space-between;
-            gap: 1.25rem;
-            margin-bottom: 3px;
-        }
-        .tt-row:last-child {
-            margin-bottom: 0;
-            margin-top: 5px;
-            padding-top: 5px;
-            border-top: 1px solid #374151;
-            font-weight: 600;
-        }
+        .tt-row { display: flex; justify-content: space-between; gap: 1.25rem; margin-bottom: 3px; }
+        .tt-row:last-child { margin-bottom: 0; margin-top: 5px; padding-top: 5px; border-top: 1px solid #374151; font-weight: 600; }
         .tt-label { color: #9ca3af; }
-
-        .ideal-box label { color: var(--primary-color); }
 
         /* ── Mietberechnung ── */
         .miete-grid {
             display: grid;
-            grid-template-columns: 360px 1fr;
+            grid-template-columns: 320px 1fr;
             gap: 2.5rem;
             align-items: start;
         }
-        @media (max-width: 860px) {
-            .miete-grid { grid-template-columns: 1fr; }
-        }
+        @media (max-width: 860px) { .miete-grid { grid-template-columns: 1fr; } }
 
-        /* Person cards */
-        .person-list {
-            display: flex;
-            flex-direction: column;
-            gap: 0.6rem;
-        }
-        .person-card {
+        /* Stockwerk cards */
+        .stockwerk-list { display: flex; flex-direction: column; gap: 0.6rem; }
+        .stockwerk-card {
             background: white;
             border: 1px solid #e2e8f0;
             border-radius: 10px;
             padding: 0.8rem 0.9rem;
         }
-        .person-card--gelaende {
-            border-left: 3px solid #f59e0b;
-        }
-        .person-card--haus {
-            border-left: 3px solid var(--primary-color);
-        }
-        .person-header {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            margin-bottom: 0.6rem;
-        }
-        .person-name-input {
+        .stockwerk-header { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem; }
+        .stockwerk-name {
             flex: 1;
             border: none;
             border-bottom: 1px solid #e2e8f0;
             font-size: 0.85rem;
-            font-weight: 600;
+            font-weight: 700;
             color: var(--text-color);
             padding: 2px 4px;
             background: transparent;
             outline: none;
         }
-        .person-name-input:focus { border-bottom-color: var(--primary-color); }
-        .person-type-select {
-            border: 1px solid #e2e8f0;
-            border-radius: 6px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            padding: 3px 6px;
+        .stockwerk-name:focus { border-bottom-color: var(--primary-color); }
+        .zimmer-section-label {
+            font-size: 0.68rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
             color: var(--text-light);
-            background: #f8fafc;
-            cursor: pointer;
-            outline: none;
+            margin: 0.4rem 0 0.3rem;
         }
-        .person-type-select:focus { border-color: var(--primary-color); }
-        .person-delete {
+        .zimmer-list { display: flex; flex-direction: column; gap: 0.25rem; }
+        .zimmer-row { display: flex; align-items: center; gap: 0.4rem; }
+        .zimmer-name-input {
+            flex: 1;
+            border: none;
+            border-bottom: 1px solid #e2e8f0;
+            font-size: 0.8rem;
+            color: var(--text-color);
+            padding: 2px 4px;
+            background: transparent;
+            outline: none;
+            min-width: 0;
+        }
+        .zimmer-name-input:focus { border-bottom-color: var(--primary-color); }
+        .zimmer-delete {
             background: none;
             border: none;
             color: #d1d5db;
             cursor: pointer;
-            font-size: 1rem;
-            padding: 0 4px;
+            font-size: 0.9rem;
+            padding: 0 2px;
             line-height: 1;
             transition: color 0.15s;
+            flex-shrink: 0;
         }
-        .person-delete:hover { color: #ef4444; }
-        .person-detail {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        .person-detail label {
+        .zimmer-delete:hover { color: #ef4444; }
+        .add-zimmer-btn {
+            background: none;
+            border: none;
             font-size: 0.75rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.4px;
             color: var(--text-light);
-            white-space: nowrap;
+            cursor: pointer;
+            padding: 4px 0;
+            text-align: left;
+            transition: color 0.15s;
+            margin-top: 0.2rem;
         }
-        .person-detail .input-wrapper {
-            width: 110px;
-        }
-        .person-detail .input-wrapper input[type="number"] {
-            padding: 6px 32px 6px 8px;
-            font-size: 0.85rem;
-        }
-        .person-detail .input-wrapper span {
-            right: 8px;
-            font-size: 0.75rem;
-        }
+        .add-zimmer-btn:hover { color: var(--primary-color); }
 
-        /* Miete results table */
-        .miete-table-col {
-            position: sticky;
-            top: 0;
-            align-self: start;
-            overflow: visible;
+        /* Miete info box */
+        .miete-info-box {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: var(--radius);
+            padding: 1rem 1.1rem;
+            margin-top: 1rem;
         }
-        .miete-table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 0.9rem;
+        .miete-info-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.82rem;
+            color: var(--text-light);
+            padding: 0.2rem 0;
         }
+        .miete-info-row .sum-val { font-weight: 600; color: var(--text-color); }
+
+        /* ── Miete interactive table ── */
+        .miete-table-col { position: sticky; top: 0; align-self: start; overflow: visible; }
+        .miete-table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
         .miete-table thead tr { background: #f8fafc; }
         .miete-table th {
             text-align: left;
-            padding: 14px 16px;
-            font-size: 0.72rem;
+            padding: 11px 12px;
+            font-size: 0.7rem;
             text-transform: uppercase;
             letter-spacing: 0.5px;
             color: var(--text-light);
@@ -598,65 +479,118 @@
             text-transform: none;
             letter-spacing: 0;
         }
-        .miete-table td {
-            padding: 10px 16px;
-            border-bottom: 1px solid #f1f5f9;
-            vertical-align: middle;
-        }
+        .miete-table td { padding: 7px 10px; border-bottom: 1px solid #f1f5f9; vertical-align: middle; }
         .miete-table tr:last-child td { border-bottom: none; }
+        .miete-table tbody tr:hover td { background: #fafafa; }
+        .miete-table tbody tr:hover td.td-miete-cell { background: transparent; }
 
-        .td-person-name {
+        /* Inline editing inputs */
+        .il-name {
+            border: none;
+            border-bottom: 1px solid transparent;
+            font-size: 0.88rem;
             font-weight: 700;
             color: var(--text-color);
-            font-size: 0.95rem;
-            white-space: nowrap;
+            padding: 3px 4px;
+            background: transparent;
+            outline: none;
+            width: 100%;
+            min-width: 80px;
+            transition: border-color 0.15s;
         }
-        .td-person-type {
-            font-size: 0.72rem;
-            font-weight: 600;
+        .il-name:hover { border-bottom-color: #e2e8f0; }
+        .il-name:focus { border-bottom-color: var(--primary-color); }
+        .il-select {
+            border: 1px solid transparent;
+            border-radius: 5px;
+            font-size: 0.78rem;
+            padding: 3px 20px 3px 5px;
+            color: var(--text-color);
+            background: transparent;
+            cursor: pointer;
+            outline: none;
+            max-width: 150px;
+            transition: border-color 0.15s, background 0.15s;
+            -webkit-appearance: auto;
+            appearance: auto;
+        }
+        .il-select:hover { border-color: #e2e8f0; background: #f8fafc; }
+        .il-select:focus { border-color: var(--primary-color); background: #f8fafc; }
+        .il-num {
+            border: 1px solid transparent;
+            border-radius: 5px;
+            font-size: 0.78rem;
+            padding: 3px 5px;
+            background: transparent;
+            outline: none;
+            width: 70px;
+            -webkit-appearance: textfield;
+            appearance: textfield;
+            transition: border-color 0.15s, background 0.15s;
+        }
+        .il-num:hover { border-color: #e2e8f0; background: #f8fafc; }
+        .il-num:focus { border-color: var(--primary-color); background: #f8fafc; }
+        .il-unit { font-size: 0.75rem; color: var(--text-light); margin-left: 2px; }
+        .drag-handle {
+            cursor: grab;
+            color: #d1d5db;
+            font-size: 1rem;
+            padding: 0 4px;
+            user-select: none;
+            line-height: 1;
+        }
+        .drag-handle:active { cursor: grabbing; }
+        .miete-table tbody tr.dragging { opacity: 0.4; }
+        .miete-table tbody tr.drag-over td { background: #eff6ff !important; border-top: 2px solid var(--primary-color); }
+        .il-del {
+            background: none;
+            border: none;
+            color: #d1d5db;
+            cursor: pointer;
+            font-size: 1rem;
+            padding: 0 3px;
+            line-height: 1;
+            transition: color 0.15s;
+        }
+        .il-del:hover { color: #ef4444; }
+        .il-type-badge {
+            font-size: 0.7rem;
+            font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.4px;
-            white-space: nowrap;
+            padding: 2px 6px;
+            border-radius: 4px;
         }
-        .badge-haus { color: var(--primary-color); }
-        .badge-gelaende { color: #f59e0b; }
+        .il-type-badge.haus     { color: var(--primary-color); background: #eff6ff; }
+        .il-type-badge.gelaende { color: #d97706; background: #fffbeb; }
 
         .td-miete-cell {
             position: relative;
-            padding: 16px;
+            padding: 10px 14px;
             font-weight: 700;
-            font-size: 0.95rem;
+            font-size: 0.92rem;
             text-align: center;
             cursor: default;
             white-space: nowrap;
-            border-radius: 8px;
         }
-        .td-miete-cell:hover .rent-tooltip {
-            opacity: 1;
-            transform: translateX(-50%) translateY(0);
-            pointer-events: auto;
+        .add-person-row td {
+            padding: 8px 10px;
+            border-top: 1px dashed #e2e8f0;
+            border-bottom: none;
         }
-        .miete-info-box {
-            background: #f8fafc;
-            border: 1px solid #e2e8f0;
-            border-radius: var(--radius);
-            padding: 1rem 1.1rem;
-            margin-top: 1rem;
-        }
-        .miete-info-row {
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.82rem;
+        .add-person-inline {
+            background: none;
+            border: none;
+            font-size: 0.8rem;
             color: var(--text-light);
-            padding: 0.2rem 0;
+            cursor: pointer;
+            padding: 4px 6px;
+            border-radius: 6px;
+            transition: color 0.15s, background 0.15s;
         }
-        .miete-info-row .sum-val { font-weight: 600; color: var(--text-color); }
-        .miete-empty {
-            text-align: center;
-            color: var(--text-light);
-            font-size: 0.9rem;
-            padding: 3rem 0;
-        }
+        .add-person-inline:hover { color: var(--primary-color); background: #eff6ff; }
+        .miete-empty { text-align: center; color: var(--text-light); font-size: 0.9rem; padding: 3rem 0; }
+        .badge-gelaende { color: #f59e0b; }
     </style>
 </head>
 <body>
@@ -670,7 +604,6 @@
         </div>
     </div>
 
-    <!-- Tab bar -->
     <div class="tab-bar">
         <button class="tab-btn active" data-tab="kredit">Kreditrechner</button>
         <button class="tab-btn" data-tab="miete">Mietberechnung</button>
@@ -679,17 +612,13 @@
     <!-- ── TAB 1: Kreditrechner ── -->
     <div id="tab-kredit" class="tab-panel active">
         <div class="main-grid">
-
-            <!-- INPUTS -->
             <div class="inputs-col">
-
                 <span class="section-label">Kaufpreis &amp; Nebenkosten</span>
-
                 <div class="form-section">
                     <div class="input-group">
                         <label for="kaufpreis-main">Kaufpreis</label>
                         <div class="input-wrapper">
-                            <input type="number" id="kaufpreis-main" value="600000" min="0" step="5000">
+                            <input type="number" id="kaufpreis-main" value="550000" min="0" step="5000">
                             <span>€</span>
                         </div>
                     </div>
@@ -701,7 +630,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="box">
                     <div class="box-title">Kaufnebenkosten</div>
                     <div class="cost-row">
@@ -733,25 +661,18 @@
                         <span id="neben-total" class="sum-val">–</span>
                     </div>
                 </div>
-
                 <div class="box box--blue">
                     <div class="kreditbetrag-row">
                         <span class="kreditbetrag-label">Kreditbetrag (gesamt)</span>
                         <span id="kreditbetrag-display" class="kreditbetrag-value">–</span>
                     </div>
                 </div>
-
                 <span class="section-label">Kreditposten</span>
-
                 <div class="tranche-list" id="tranche-list"></div>
-
                 <div class="alloc-bar"><div class="alloc-bar-fill" id="alloc-bar-fill"></div></div>
                 <div class="alloc-label" id="alloc-label">–</div>
-
                 <button class="add-tranche-btn" id="add-tranche-btn">+ Kreditposten hinzufügen</button>
-
                 <span class="section-label">Kosten / Monat</span>
-
                 <div class="form-section">
                     <div class="input-group">
                         <label for="betriebskosten">Betriebskosten (Gesamt)</label>
@@ -768,14 +689,12 @@
                         </div>
                     </div>
                 </div>
-
                 <span class="section-label">Instandhaltungsrücklage</span>
-
                 <div class="form-section">
                     <div class="input-group">
                         <label for="wohnflaeche">Wohnfläche</label>
                         <div class="input-wrapper">
-                            <input type="number" id="wohnflaeche" value="336" min="0" step="10">
+                            <input type="number" id="wohnflaeche" value="348" min="0" step="10">
                             <span>m²</span>
                         </div>
                     </div>
@@ -788,92 +707,87 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="box--ideal">
                     <div class="input-group">
                         <label for="ideal" style="color:var(--primary-color);">Idealvorstellung / Person / Monat</label>
                         <div class="input-wrapper">
-                            <input type="number" id="ideal" value="650" min="0" step="10">
+                            <input type="number" id="ideal" value="600" min="0" step="10">
                             <span>€</span>
                         </div>
                         <span class="hint">Dient nur zur Einfärbung der Tabellenzellen.</span>
                     </div>
                 </div>
-
                 <div class="box">
                     <div class="box-title">Kredit-Zusammenfassung</div>
                     <div id="summary-rows"></div>
                 </div>
-
             </div>
-
-            <!-- TABLE -->
             <div class="table-col">
                 <table class="people-table">
-                    <colgroup id="table-cols">
-                        <col class="col-people">
-                    </colgroup>
+                    <colgroup id="table-cols"><col class="col-people"></colgroup>
                     <thead id="table-head"></thead>
                     <tbody id="table-body"></tbody>
                 </table>
             </div>
-
         </div>
     </div>
 
     <!-- ── TAB 2: Mietberechnung ── -->
     <div id="tab-miete" class="tab-panel">
         <div class="miete-grid">
-
-            <!-- INPUTS -->
             <div class="inputs-col">
-
-                <span class="section-label">Hausparameter</span>
-
-                <div class="form-section">
-                    <div class="input-group">
-                        <label for="haus-gesamt-qm">Gesamt-Wohnfläche Haus</label>
-                        <span class="hint">Gemeinschaftsfläche = Gesamt − Σ private qm</span>
-                        <div class="input-wrapper">
-                            <input type="number" id="haus-gesamt-qm" value="200" min="0" step="5">
-                            <span>m²</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="box" id="miete-qm-info" style="display:none;">
+                <span class="section-label">Stockwerke</span>
+                <div class="stockwerk-list" id="stockwerk-list"></div>
+                <button class="add-tranche-btn" id="add-stockwerk-btn">+ Stockwerk hinzufügen</button>
+                <div class="miete-info-box" id="miete-qm-info" style="display:none;">
                     <div id="miete-qm-info-rows"></div>
                 </div>
-
-                <span class="section-label">Bewohner</span>
-
-                <div class="person-list" id="person-list"></div>
-
-                <button class="add-tranche-btn" id="add-person-btn">+ Bewohner hinzufügen</button>
-
             </div>
-
-            <!-- RESULTS -->
             <div class="miete-table-col">
                 <div id="miete-results"></div>
             </div>
-
         </div>
     </div>
-
 </div>
 
 <script>
     // ── State ──────────────────────────────────────────────
     let tranches = [
-        { name: 'Bankkredit',          amount: 800000, rate: 4,   years: 30 },
-        { name: 'Nachrangsdarlehen',   amount: 200000, rate: 2,   years: 10 },
+        { name: 'Bankkredit',        amount: 400000, rate: 4,   years: 30 },
+        { name: 'Nachrangsdarlehen', amount: 600000, rate: 2.5, years: 30 },
+    ];
+
+    let stockwerke = [
+        { name: 'EG',    gesamtQm: 123.84, zimmer: [
+            { name: 'Zimmer 1', qm: 15.26 },
+            { name: 'Zimmer 2', qm: 21.71 },
+            { name: 'Zimmer 3', qm: 20.56 },
+            { name: 'Zimmer 4', qm: 12.83 },
+        ]},
+        { name: '1. OG', gesamtQm: 112.54, zimmer: [
+            { name: 'Zimmer 1', qm: 15.26 },
+            { name: 'Zimmer 2', qm: 21.71 },
+            { name: 'Zimmer 3', qm: 20.56 },
+            { name: 'Zimmer 4', qm: 12.83 },
+        ]},
+        { name: '2. OG', gesamtQm: 112.54, zimmer: [
+            { name: 'Zimmer 1', qm: 20 },
+            { name: 'Zimmer 2', qm: 20 },
+            { name: 'Zimmer 3', qm: 20 },
+        ]},
     ];
 
     let bewohner = [
-        { name: 'Person 1', type: 'haus',     qm: 25,  pauschale: 0   },
-        { name: 'Person 2', type: 'haus',     qm: 20,  pauschale: 0   },
-        { name: 'Bauwagen', type: 'gelaende', qm: 0,   pauschale: 150 },
+        { name: 'Person 1',   type: 'haus',     stockwerkIdx: 0, zimmerIdx: 0, customQm: 0, pauschale: 0   },
+        { name: 'Person 2',   type: 'haus',     stockwerkIdx: 0, zimmerIdx: 1, customQm: 0, pauschale: 0   },
+        { name: 'Person 3',   type: 'haus',     stockwerkIdx: 0, zimmerIdx: 2, customQm: 0, pauschale: 0   },
+        { name: 'Person 4',   type: 'haus',     stockwerkIdx: 1, zimmerIdx: 0, customQm: 0, pauschale: 0   },
+        { name: 'Person 5',   type: 'haus',     stockwerkIdx: 1, zimmerIdx: 1, customQm: 0, pauschale: 0   },
+        { name: 'Person 6',   type: 'haus',     stockwerkIdx: 1, zimmerIdx: 3, customQm: 0, pauschale: 0   },
+        { name: 'Person 7',    type: 'haus',     stockwerkIdx: 2, zimmerIdx: 0, customQm: 0, pauschale: 0   },
+        { name: 'Person 8',    type: 'haus',     stockwerkIdx: 2, zimmerIdx: 1, customQm: 0, pauschale: 0   },
+        { name: 'Person 9',    type: 'haus',     stockwerkIdx: 2, zimmerIdx: 2, customQm: 0, pauschale: 0   },
+        { name: 'Nagelstudio', type: 'gelaende', stockwerkIdx: 0, zimmerIdx: 0, customQm: 0, pauschale: 500 },
     ];
 
     // ── Static inputs ──────────────────────────────────────
@@ -887,13 +801,11 @@
     const wohnflaecheEl   = document.getElementById('wohnflaeche');
     const ruecklageQmEl   = document.getElementById('ruecklage-qm');
     const idealEl         = document.getElementById('ideal');
-    const hausGesamtQmEl  = document.getElementById('haus-gesamt-qm');
 
     const fmt  = new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'EUR' });
     const fmtK = v => fmt.format(v);
     const fmtN = (v, d=1) => new Intl.NumberFormat('de-DE', { minimumFractionDigits: d, maximumFractionDigits: d }).format(v);
 
-    // ── Annuity ────────────────────────────────────────────
     function annuity(principal, ratePercent, years) {
         if (principal <= 0 || years <= 0) return 0;
         if (ratePercent === 0) return principal / (years * 12);
@@ -903,7 +815,6 @@
         return principal * (r * f) / (f - 1);
     }
 
-    // ── Color ──────────────────────────────────────────────
     function cellColor(value, ideal) {
         if (!ideal || ideal <= 0) return { bg: '#f1f5f9', text: '#1f2937' };
         const over  = value - ideal;
@@ -912,18 +823,25 @@
         return { bg: `hsl(${hue},70%,82%)`, text: `hsl(${hue},65%,22%)` };
     }
 
+    function getPersonQm(b) {
+        if (b.type !== 'haus') return 0;
+        if (b.zimmerIdx === -1) return b.customQm || 0;
+        const sw = stockwerke[b.stockwerkIdx];
+        if (!sw) return 0;
+        return sw.zimmer[b.zimmerIdx]?.qm || 0;
+    }
+
     // ── Render tranche list ────────────────────────────────
     function renderTranches() {
         const list = document.getElementById('tranche-list');
         list.innerHTML = '';
-
         tranches.forEach((t, i) => {
             const card = document.createElement('div');
             card.className = 'tranche-card';
             card.innerHTML = `
                 <div class="tranche-header">
                     <input class="tranche-name" type="text" value="${t.name}" placeholder="Bezeichnung" data-i="${i}" data-f="name">
-                    ${tranches.length > 1 ? `<button class="tranche-delete" data-i="${i}" title="Entfernen">×</button>` : ''}
+                    ${tranches.length > 1 ? `<button class="tranche-delete" data-i="${i}">×</button>` : ''}
                 </div>
                 <div class="tranche-fields">
                     <div class="tranche-field">
@@ -950,98 +868,97 @@
                 </div>`;
             list.appendChild(card);
         });
-
-        list.querySelectorAll('input').forEach(el => el.addEventListener('input', onTrancheInput));
-        list.querySelectorAll('.tranche-delete').forEach(btn => btn.addEventListener('click', e => {
-            tranches.splice(parseInt(e.currentTarget.dataset.i), 1);
-            renderTranches();
+        list.querySelectorAll('input').forEach(el => el.addEventListener('input', e => {
+            const i = +e.target.dataset.i, f = e.target.dataset.f;
+            tranches[i][f] = f === 'name' ? e.target.value : (parseFloat(e.target.value) || 0);
             calculate();
         }));
-    }
-
-    function onTrancheInput(e) {
-        const i = parseInt(e.target.dataset.i);
-        const f = e.target.dataset.f;
-        tranches[i][f] = f === 'name' ? e.target.value : (parseFloat(e.target.value) || 0);
-        calculate();
+        list.querySelectorAll('.tranche-delete').forEach(btn => btn.addEventListener('click', e => {
+            tranches.splice(+e.currentTarget.dataset.i, 1);
+            renderTranches(); calculate();
+        }));
     }
 
     document.getElementById('add-tranche-btn').addEventListener('click', () => {
         tranches.push({ name: `Kredit ${tranches.length + 1}`, amount: 0, rate: 3, years: 20 });
-        renderTranches();
-        calculate();
+        renderTranches(); calculate();
     });
 
-    // ── Render person list ─────────────────────────────────
-    function renderBewohner() {
-        const list = document.getElementById('person-list');
+    // ── Render stockwerk list ──────────────────────────────
+    function renderStockwerke() {
+        const list = document.getElementById('stockwerk-list');
         list.innerHTML = '';
-
-        bewohner.forEach((b, i) => {
+        stockwerke.forEach((sw, si) => {
             const card = document.createElement('div');
-            card.className = `person-card person-card--${b.type}`;
-
-            const detailHtml = b.type === 'haus'
-                ? `<div class="person-detail">
-                    <label>Zimmergröße</label>
-                    <div class="input-wrapper">
-                        <input type="number" value="${b.qm}" min="0" step="1" data-i="${i}" data-f="qm">
+            card.className = 'stockwerk-card';
+            const zimmerRows = sw.zimmer.map((z, zi) => `
+                <div class="zimmer-row">
+                    <input class="zimmer-name-input" type="text" value="${z.name}" data-si="${si}" data-zi="${zi}">
+                    <div class="input-wrapper--sm">
+                        <input type="number" class="zimmer-qm-input" value="${z.qm}" min="0" step="0.01" data-si="${si}" data-zi="${zi}">
                         <span>m²</span>
                     </div>
-                   </div>`
-                : `<div class="person-detail">
-                    <label>Pauschale/Mo</label>
-                    <div class="input-wrapper">
-                        <input type="number" value="${b.pauschale}" min="0" step="10" data-i="${i}" data-f="pauschale">
-                        <span>€</span>
-                    </div>
-                   </div>`;
+                    ${sw.zimmer.length > 1 ? `<button class="zimmer-delete" data-si="${si}" data-zi="${zi}">×</button>` : '<span style="width:18px;"></span>'}
+                </div>`).join('');
 
             card.innerHTML = `
-                <div class="person-header">
-                    <input class="person-name-input" type="text" value="${b.name}" placeholder="Name" data-i="${i}" data-f="name">
-                    <select class="person-type-select" data-i="${i}">
-                        <option value="haus"     ${b.type === 'haus'     ? 'selected' : ''}>Hausbewohner</option>
-                        <option value="gelaende" ${b.type === 'gelaende' ? 'selected' : ''}>Geländebewohner</option>
-                    </select>
-                    ${bewohner.length > 1 ? `<button class="person-delete" data-i="${i}" title="Entfernen">×</button>` : ''}
+                <div class="stockwerk-header">
+                    <input class="stockwerk-name" type="text" value="${sw.name}" data-si="${si}">
+                    <div class="input-wrapper--sm">
+                        <input type="number" class="stockwerk-gesamt-input" value="${sw.gesamtQm}" min="0" step="0.01" data-si="${si}">
+                        <span>m²</span>
+                    </div>
+                    ${stockwerke.length > 1 ? `<button class="tranche-delete" data-si="${si}">×</button>` : ''}
                 </div>
-                ${detailHtml}`;
-
+                <div class="zimmer-section-label">Zimmer</div>
+                <div class="zimmer-list">${zimmerRows}</div>
+                <button class="add-zimmer-btn" data-si="${si}">+ Zimmer hinzufügen</button>`;
             list.appendChild(card);
         });
 
-        list.querySelectorAll('.person-name-input').forEach(el => el.addEventListener('input', e => {
-            bewohner[parseInt(e.target.dataset.i)].name = e.target.value;
-            calculate();
+        list.querySelectorAll('.stockwerk-name').forEach(el => el.addEventListener('input', e => {
+            stockwerke[+e.target.dataset.si].name = e.target.value; calculate();
         }));
-        list.querySelectorAll('.person-type-select').forEach(el => el.addEventListener('change', e => {
-            bewohner[parseInt(e.target.dataset.i)].type = e.target.value;
-            renderBewohner();
-            calculate();
+        list.querySelectorAll('.stockwerk-gesamt-input').forEach(el => el.addEventListener('input', e => {
+            stockwerke[+e.target.dataset.si].gesamtQm = parseFloat(e.target.value) || 0; calculate();
         }));
-        list.querySelectorAll('input[data-f="qm"]').forEach(el => el.addEventListener('input', e => {
-            bewohner[parseInt(e.target.dataset.i)].qm = parseFloat(e.target.value) || 0;
-            calculate();
+        list.querySelectorAll('.zimmer-name-input').forEach(el => el.addEventListener('input', e => {
+            stockwerke[+e.target.dataset.si].zimmer[+e.target.dataset.zi].name = e.target.value; calculate();
         }));
-        list.querySelectorAll('input[data-f="pauschale"]').forEach(el => el.addEventListener('input', e => {
-            bewohner[parseInt(e.target.dataset.i)].pauschale = parseFloat(e.target.value) || 0;
-            calculate();
+        list.querySelectorAll('.zimmer-qm-input').forEach(el => el.addEventListener('input', e => {
+            stockwerke[+e.target.dataset.si].zimmer[+e.target.dataset.zi].qm = parseFloat(e.target.value) || 0; calculate();
         }));
-        list.querySelectorAll('.person-delete').forEach(btn => btn.addEventListener('click', e => {
-            bewohner.splice(parseInt(e.currentTarget.dataset.i), 1);
-            renderBewohner();
-            calculate();
+        list.querySelectorAll('.zimmer-delete').forEach(btn => btn.addEventListener('click', e => {
+            const si = +e.currentTarget.dataset.si, zi = +e.currentTarget.dataset.zi;
+            bewohner.forEach(b => {
+                if (b.stockwerkIdx === si) {
+                    if (b.zimmerIdx === zi) b.zimmerIdx = 0;
+                    else if (b.zimmerIdx > zi) b.zimmerIdx--;
+                }
+            });
+            stockwerke[si].zimmer.splice(zi, 1);
+            renderStockwerke(); calculate();
+        }));
+        list.querySelectorAll('.add-zimmer-btn').forEach(btn => btn.addEventListener('click', e => {
+            const si = +e.currentTarget.dataset.si;
+            stockwerke[si].zimmer.push({ name: `Zimmer ${stockwerke[si].zimmer.length + 1}`, qm: 15 });
+            renderStockwerke(); calculate();
+        }));
+        list.querySelectorAll('.tranche-delete').forEach(btn => btn.addEventListener('click', e => {
+            const si = +e.currentTarget.dataset.si;
+            bewohner.forEach(b => {
+                if (b.stockwerkIdx === si) { b.stockwerkIdx = 0; b.zimmerIdx = 0; }
+                else if (b.stockwerkIdx > si) b.stockwerkIdx--;
+            });
+            stockwerke.splice(si, 1);
+            renderStockwerke(); calculate();
         }));
     }
 
-    document.getElementById('add-person-btn').addEventListener('click', () => {
-        bewohner.push({ name: `Person ${bewohner.length + 1}`, type: 'haus', qm: 20, pauschale: 0 });
-        renderBewohner();
-        calculate();
+    document.getElementById('add-stockwerk-btn').addEventListener('click', () => {
+        stockwerke.push({ name: `Stockwerk ${stockwerke.length + 1}`, gesamtQm: 100, zimmer: [{ name: 'Zimmer 1', qm: 20 }] });
+        renderStockwerke(); calculate();
     });
-
-    hausGesamtQmEl.addEventListener('input', calculate);
 
     // ── Static input listeners ─────────────────────────────
     [kaufpreisMainEl, modernEl, maklerPctEl, notarPctEl, gewPctEl,
@@ -1049,21 +966,17 @@
     ].forEach(el => el.addEventListener('input', calculate));
 
     // ── Main calculation ───────────────────────────────────
-    let lastPhases = [];
-    let lastFixedMonthly = 0;
-
     function calculate() {
-        // Kaufpreis & Nebenkosten
         const kaufpreisVal = parseFloat(kaufpreisMainEl.value) || 0;
         const modern       = parseFloat(modernEl.value)        || 0;
         const maklerPct    = parseFloat(maklerPctEl.value)     || 0;
         const notarPct     = parseFloat(notarPctEl.value)      || 0;
         const gewPct       = parseFloat(gewPctEl.value)        || 0;
 
-        const maklerAbs  = kaufpreisVal * maklerPct / 100;
-        const notarAbs   = kaufpreisVal * notarPct  / 100;
-        const gewAbs     = kaufpreisVal * gewPct    / 100;
-        const nebenTotal = maklerAbs + notarAbs + gewAbs;
+        const maklerAbs   = kaufpreisVal * maklerPct / 100;
+        const notarAbs    = kaufpreisVal * notarPct  / 100;
+        const gewAbs      = kaufpreisVal * gewPct    / 100;
+        const nebenTotal  = maklerAbs + notarAbs + gewAbs;
         const kreditTotal = kaufpreisVal + modern + nebenTotal;
 
         document.getElementById('makler-abs').textContent  = fmtK(maklerAbs);
@@ -1072,7 +985,6 @@
         document.getElementById('neben-total').textContent = fmtK(nebenTotal);
         document.getElementById('kreditbetrag-display').textContent = fmtK(kreditTotal);
 
-        // Allocation bar
         const allocated = tranches.reduce((s, t) => s + (t.amount || 0), 0);
         const allocPct  = kreditTotal > 0 ? Math.min(allocated / kreditTotal, 1) : 0;
         const diff      = kreditTotal - allocated;
@@ -1080,29 +992,19 @@
         const allocLbl  = document.getElementById('alloc-label');
         fill.style.width      = (allocPct * 100) + '%';
         fill.style.background = Math.abs(diff) < 1 ? '#10b981' : diff > 0 ? '#f59e0b' : '#ef4444';
-        if (Math.abs(diff) < 1) {
-            allocLbl.textContent = '✓ Vollständig aufgeteilt';
-            allocLbl.style.color = '#10b981';
-        } else if (diff > 0) {
-            allocLbl.textContent = `Noch zuzuweisen: ${fmtK(diff)}`;
-            allocLbl.style.color = '#f59e0b';
-        } else {
-            allocLbl.textContent = `Übersteigt Kreditbetrag um ${fmtK(-diff)}`;
-            allocLbl.style.color = '#ef4444';
-        }
+        if (Math.abs(diff) < 1) { allocLbl.textContent = '✓ Vollständig aufgeteilt'; allocLbl.style.color = '#10b981'; }
+        else if (diff > 0)      { allocLbl.textContent = `Noch zuzuweisen: ${fmtK(diff)}`; allocLbl.style.color = '#f59e0b'; }
+        else                    { allocLbl.textContent = `Übersteigt Kreditbetrag um ${fmtK(-diff)}`; allocLbl.style.color = '#ef4444'; }
 
-        // Running costs
-        const betriebs       = parseFloat(betriebsEl.value)    || 0;
-        const invest         = parseFloat(investEl.value)      || 0;
-        const qm             = parseFloat(wohnflaecheEl.value)  || 0;
-        const ruecklageQm    = parseFloat(ruecklageQmEl.value)  || 0;
-        const ideal          = parseFloat(idealEl.value)        || 0;
+        const betriebs       = parseFloat(betriebsEl.value)   || 0;
+        const invest         = parseFloat(investEl.value)     || 0;
+        const qm             = parseFloat(wohnflaecheEl.value) || 0;
+        const ruecklageQm    = parseFloat(ruecklageQmEl.value) || 0;
+        const ideal          = parseFloat(idealEl.value)       || 0;
         const ruecklageMonth = qm * ruecklageQm / 12;
         const fixedMonthly   = betriebs + invest + ruecklageMonth;
 
-        // Phases: unique sorted loan end-years
         const endYears = [...new Set(tranches.map(t => t.years))].sort((a, b) => a - b);
-
         const phases = [];
         let prevYear = 0;
         for (const endYear of endYears) {
@@ -1112,216 +1014,319 @@
             prevYear = endYear;
         }
 
-        lastPhases       = phases;
-        lastFixedMonthly = fixedMonthly;
-
         // Summary box
         const summaryEl = document.getElementById('summary-rows');
         let summaryHtml = '';
         phases.forEach(ph => {
-            const label = ph.fromYear === ph.toYear
-                ? `Jahr ${ph.fromYear}`
-                : `Jahr ${ph.fromYear}–${ph.toYear}`;
+            const label = ph.fromYear === ph.toYear ? `Jahr ${ph.fromYear}` : `Jahr ${ph.fromYear}–${ph.toYear}`;
             summaryHtml += `<div class="sum-row"><span>${label} (${ph.active.length} Kredit${ph.active.length !== 1 ? 'e' : ''})</span><span class="sum-val">${fmtK(ph.monthly)}/Mo</span></div>`;
         });
         summaryHtml += `<div class="sum-row sum-row--divider"><span>Rücklage / Monat</span><span class="sum-val">${fmtK(ruecklageMonth)}</span></div>`;
         summaryEl.innerHTML = summaryHtml;
 
-        // Colgroup
+        // Kredit table
         const colgroup = document.getElementById('table-cols');
         colgroup.innerHTML = '<col class="col-people">' + phases.map(() => '<col class="col-phase">').join('');
-
-        // Table header
         const thead = document.getElementById('table-head');
         let headHtml = '<tr><th>Pers.</th>';
         phases.forEach(ph => {
             const yLabel = ph.fromYear === ph.toYear ? `Jahr ${ph.fromYear}` : `Jahr ${ph.fromYear}–${ph.toYear}`;
-            const sub    = ph.active.map(t => t.name || 'Kredit').join(', ');
-            headHtml += `<th class="phase-header">${yLabel}<span class="phase-sub">${sub}</span></th>`;
+            headHtml += `<th class="phase-header">${yLabel}<span class="phase-sub">${ph.active.map(t => t.name || 'Kredit').join(', ')}</span></th>`;
         });
-        headHtml += '</tr>';
-        thead.innerHTML = headHtml;
+        thead.innerHTML = headHtml + '</tr>';
 
-        // Table body
         const tbody = document.getElementById('table-body');
         let bodyHtml = '';
         for (let p = 5; p <= 20; p++) {
             bodyHtml += `<tr><td class="td-people">${p}</td>`;
             phases.forEach(ph => {
-                const creditPP    = ph.monthly / p;
-                const betriebsPP  = betriebs / p;
-                const investPP    = invest / p;
-                const ruecklagePP = ruecklageMonth / p;
-                const totalPP     = creditPP + betriebsPP + investPP + ruecklagePP;
-                const totalFmt    = fmtK(totalPP);
-                const col         = cellColor(totalPP, ideal);
-
-                bodyHtml += `
-                <td class="td-rent" style="background:${col.bg};color:${col.text};">
-                    ${totalFmt}
-                    <div class="rent-tooltip">
-                        <div class="rent-tooltip-inner">
-                            <div class="tt-row"><span class="tt-label">Kreditrate</span><span>${fmtK(creditPP)}</span></div>
-                            <div class="tt-row"><span class="tt-label">Betriebskosten</span><span>${fmtK(betriebsPP)}</span></div>
-                            <div class="tt-row"><span class="tt-label">Investitionskosten</span><span>${fmtK(investPP)}</span></div>
-                            <div class="tt-row"><span class="tt-label">Rücklage</span><span>${fmtK(ruecklagePP)}</span></div>
-                            <div class="tt-row"><span class="tt-label">Gesamt</span><span>${totalFmt}</span></div>
-                        </div>
-                    </div>
-                </td>`;
+                const creditPP = ph.monthly / p, betriebsPP = betriebs / p, investPP = invest / p, ruecklagePP = ruecklageMonth / p;
+                const totalPP = creditPP + betriebsPP + investPP + ruecklagePP;
+                const totalFmt = fmtK(totalPP);
+                const col = cellColor(totalPP, ideal);
+                bodyHtml += `<td class="td-rent" style="background:${col.bg};color:${col.text};">${totalFmt}
+                    <div class="rent-tooltip"><div class="rent-tooltip-inner">
+                        <div class="tt-row"><span class="tt-label">Kreditrate</span><span>${fmtK(creditPP)}</span></div>
+                        <div class="tt-row"><span class="tt-label">Betriebskosten</span><span>${fmtK(betriebsPP)}</span></div>
+                        <div class="tt-row"><span class="tt-label">Investitionskosten</span><span>${fmtK(investPP)}</span></div>
+                        <div class="tt-row"><span class="tt-label">Rücklage</span><span>${fmtK(ruecklagePP)}</span></div>
+                        <div class="tt-row"><span class="tt-label">Gesamt</span><span>${totalFmt}</span></div>
+                    </div></div></td>`;
             });
             bodyHtml += '</tr>';
         }
         tbody.innerHTML = bodyHtml;
 
-        calculateMiete(phases, fixedMonthly, betriebs, invest, ruecklageMonth);
-
+        calculateMiete(phases, fixedMonthly);
         saveState();
     }
 
     // ── Mietberechnung ─────────────────────────────────────
-    function calculateMiete(phases, fixedMonthly, betriebs, invest, ruecklageMonth) {
-        const hausGesamtQm = parseFloat(hausGesamtQmEl.value) || 0;
-
-        const hausBewohner    = bewohner.filter(b => b.type === 'haus');
-        const gelaendeBewohner = bewohner.filter(b => b.type === 'gelaende');
-
-        const sumPrivateQm    = hausBewohner.reduce((s, b) => s + (b.qm || 0), 0);
-        const gemeinschaftsQm = Math.max(0, hausGesamtQm - sumPrivateQm);
+    function calculateMiete(phases, fixedMonthly) {
+        const gelaendeBewohner   = bewohner.filter(b => b.type === 'gelaende');
+        const hausBewohner       = bewohner.filter(b => b.type === 'haus');
         const gelaendePauschalen = gelaendeBewohner.reduce((s, b) => s + (b.pauschale || 0), 0);
+        const gesamtHausQm       = stockwerke.reduce((s, sw) => s + sw.gesamtQm, 0);
+
+        const swStats = stockwerke.map((sw, si) => {
+            const residents      = hausBewohner.filter(b => b.stockwerkIdx === si);
+            const belegteQm      = residents.reduce((s, b) => s + getPersonQm(b), 0);
+            const gemeinschaftQm = Math.max(0, sw.gesamtQm - belegteQm);
+            return { residents, belegteQm, gemeinschaftQm };
+        });
 
         // Info box
         const infoBox  = document.getElementById('miete-qm-info');
         const infoRows = document.getElementById('miete-qm-info-rows');
-        if (hausGesamtQm > 0 || bewohner.length > 0) {
-            infoBox.style.display = 'block';
-            infoRows.innerHTML = `
-                <div class="miete-info-row"><span>Gesamt Haus</span><span class="sum-val">${fmtN(hausGesamtQm)} m²</span></div>
-                <div class="miete-info-row"><span>Private Flächen (Σ)</span><span class="sum-val">${fmtN(sumPrivateQm)} m²</span></div>
-                <div class="miete-info-row" style="border-top:1px solid #e2e8f0;margin-top:0.25rem;padding-top:0.35rem;">
-                    <span>Gemeinschaftsfläche</span><span class="sum-val">${fmtN(gemeinschaftsQm)} m²</span>
+        infoBox.style.display = 'block';
+        infoRows.innerHTML = stockwerke.map((sw, si) => {
+            const { belegteQm, gemeinschaftQm, residents } = swStats[si];
+            const pct = gesamtHausQm > 0 ? sw.gesamtQm / gesamtHausQm * 100 : 0;
+            return `
+                <div class="miete-info-row" style="font-weight:700;color:var(--text-color);margin-top:${si > 0 ? '0.6rem' : '0'};">
+                    <span>${sw.name}</span>
+                    <span class="sum-val">${fmtN(sw.gesamtQm, 2)} m² <span style="font-weight:400;color:var(--text-light);">(${fmtN(pct, 1)} %)</span></span>
                 </div>
-                <div class="miete-info-row" style="margin-top:0.5rem;"><span>Geländepauschalen (Σ)</span><span class="sum-val">${fmtK(gelaendePauschalen)}/Mo</span></div>`;
-        } else {
-            infoBox.style.display = 'none';
-        }
+                <div class="miete-info-row" style="padding-left:0.75rem;">
+                    <span>Privat (${residents.length} Person${residents.length !== 1 ? 'en' : ''})</span>
+                    <span class="sum-val">${fmtN(belegteQm, 2)} m²</span>
+                </div>
+                <div class="miete-info-row" style="padding-left:0.75rem;">
+                    <span>Gemeinschaft</span><span class="sum-val">${fmtN(gemeinschaftQm, 2)} m²</span>
+                </div>`;
+        }).join('') + `
+            <div class="miete-info-row" style="border-top:1px solid #e2e8f0;margin-top:0.5rem;padding-top:0.4rem;font-weight:600;">
+                <span>Gesamt Haus</span><span class="sum-val">${fmtN(gesamtHausQm, 2)} m²</span>
+            </div>
+            <div class="miete-info-row">
+                <span>Geländepauschalen (Σ)</span><span class="sum-val">${fmtK(gelaendePauschalen)}/Mo</span>
+            </div>`;
 
         const resultsEl = document.getElementById('miete-results');
+        const nPhases   = phases.length;
 
-        if (bewohner.length === 0) {
-            resultsEl.innerHTML = '<div class="miete-empty">Keine Bewohner eingetragen.</div>';
-            return;
-        }
-        if (hausBewohner.length > 0 && hausGesamtQm <= 0) {
-            resultsEl.innerHTML = '<div class="miete-empty">Bitte Gesamt-Wohnfläche des Hauses eintragen.</div>';
-            return;
-        }
-        if (sumPrivateQm > hausGesamtQm && hausGesamtQm > 0) {
-            resultsEl.innerHTML = `<div class="miete-empty" style="color:#ef4444;">Private Flächen (${fmtN(sumPrivateQm)} m²) übersteigen Gesamt-Fläche (${fmtN(hausGesamtQm)} m²).</div>`;
-            return;
+        // Betriebskosten/Invest/Rücklage equal split across ALL bewohner
+        const nTotal     = bewohner.length;
+        const fixedShare = nTotal > 0 ? fixedMonthly / nTotal : 0;
+
+        // Helper: compute miete for one person in one phase
+        function computeMiete(b, ph) {
+            const kreditkosten = ph.monthly;
+            const hauskosten   = kreditkosten - gelaendePauschalen;
+
+            if (b.type === 'gelaende') {
+                const miete = fixedShare + b.pauschale;
+                const tooltip = `
+                    <div class="tt-row"><span class="tt-label">Betriebs/Invest/Rücklage (1/${nTotal})</span><span>${fmtK(fixedShare)}</span></div>
+                    <div class="tt-row"><span class="tt-label">Pauschale (Kredit-Anteil)</span><span>${fmtK(b.pauschale)}</span></div>
+                    <div class="tt-row"><span class="tt-label">Gesamt</span><span>${fmtK(miete)}</span></div>`;
+                return { miete, tooltip };
+            }
+
+            const sw        = stockwerke[b.stockwerkIdx];
+            const swQm      = sw?.gesamtQm || 0;
+            const swKosten  = gesamtHausQm > 0 ? hauskosten * (swQm / gesamtHausQm) : 0;
+            const costPerQm = swQm > 0 ? swKosten / swQm : 0;
+            const { gemeinschaftQm, residents } = swStats[b.stockwerkIdx] || { gemeinschaftQm: 0, residents: [] };
+            const n         = residents.length;
+            const personQm  = getPersonQm(b);
+            const privatAnt = personQm * costPerQm;
+            const gemeinAnt = n > 0 ? (gemeinschaftQm * costPerQm) / n : 0;
+            const kreditAnt = privatAnt + gemeinAnt;
+            const miete     = fixedShare + kreditAnt;
+
+            const swName  = sw?.name || '–';
+            const pct     = gesamtHausQm > 0 ? swQm / gesamtHausQm * 100 : 0;
+            const gQmPP   = n > 0 ? gemeinschaftQm / n : 0;
+            const tooltip = `
+                <div class="tt-row"><span class="tt-label">Betriebs/Invest/Rücklage (1/${nTotal})</span><span>${fmtK(fixedShare)}</span></div>
+                <div class="tt-row"><span class="tt-label">Kreditkosten/Mo</span><span>${fmtK(kreditkosten)}</span></div>
+                <div class="tt-row"><span class="tt-label">− Geländepauschalen</span><span>− ${fmtK(gelaendePauschalen)}</span></div>
+                <div class="tt-row"><span class="tt-label">= Hauskosten</span><span>${fmtK(hauskosten)}</span></div>
+                <div class="tt-row"><span class="tt-label">${swName} (${fmtN(pct, 1)} %)</span><span>${fmtK(swKosten)}</span></div>
+                <div class="tt-row"><span class="tt-label">€/m² ${swName}</span><span>${fmtN(costPerQm, 2)}</span></div>
+                <div class="tt-row"><span class="tt-label">Zimmer (${fmtN(personQm, 2)} m²)</span><span>${fmtK(privatAnt)}</span></div>
+                <div class="tt-row"><span class="tt-label">Gemeinschaft (${fmtN(gQmPP, 1)} m²)</span><span>${fmtK(gemeinAnt)}</span></div>
+                <div class="tt-row"><span class="tt-label">Gesamt</span><span>${fmtK(miete)}</span></div>`;
+            return { miete, tooltip };
         }
 
-        // Build table
+        // Build table HTML
         let html = `<table class="miete-table"><thead><tr>
-            <th>Bewohner</th>
+            <th style="min-width:110px;">Name</th>
             <th>Typ</th>
-            <th>Details</th>`;
-
+            <th>Stockwerk / Zimmer</th>`;
         phases.forEach(ph => {
             const yLabel = ph.fromYear === ph.toYear ? `Jahr ${ph.fromYear}` : `Jahr ${ph.fromYear}–${ph.toYear}`;
-            const sub    = ph.active.map(t => t.name || 'Kredit').join(', ');
-            html += `<th class="miete-phase-header">${yLabel}<span class="phase-sub">${sub}</span></th>`;
+            html += `<th class="miete-phase-header">${yLabel}<span class="phase-sub">${ph.active.map(t => t.name || 'Kredit').join(', ')}</span></th>`;
         });
-        html += '</tr></thead><tbody>';
+        html += '<th style="width:24px;"></th><th style="width:32px;"></th></tr></thead><tbody>';
 
-        bewohner.forEach(b => {
-            html += `<tr>
-                <td class="td-person-name">${b.name || '–'}</td>
-                <td class="td-person-type ${b.type === 'haus' ? 'badge-haus' : 'badge-gelaende'}">
-                    ${b.type === 'haus' ? 'Haus' : 'Gelände'}
-                </td>
-                <td style="font-size:0.8rem;color:var(--text-light);">
-                    ${b.type === 'haus'
-                        ? `${fmtN(b.qm)} m² privat`
-                        : `${fmtK(b.pauschale)}/Mo Pauschale`}
-                </td>`;
+        bewohner.forEach((b, i) => {
+            const sw = b.type === 'haus' ? (stockwerke[b.stockwerkIdx] || stockwerke[0]) : null;
+
+            // Type badge
+            const typeBadge = `<select class="il-select" data-i="${i}" data-f="type" style="font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.4px;padding:2px 6px;border-radius:4px;${b.type === 'haus' ? 'color:var(--primary-color);background:#eff6ff;border-color:#bfdbfe;' : 'color:#d97706;background:#fffbeb;border-color:#fde68a;'}">
+                <option value="haus"     ${b.type === 'haus'     ? 'selected' : ''}>Haus</option>
+                <option value="gelaende" ${b.type === 'gelaende' ? 'selected' : ''}>Gelände</option>
+            </select>`;
+
+            // Location cell
+            let locationCell;
+            if (b.type === 'haus') {
+                const swOptions = stockwerke.map((s, si) =>
+                    `<option value="${si}" ${b.stockwerkIdx === si ? 'selected' : ''}>${s.name}</option>`
+                ).join('');
+                const zimmerOptions = (sw?.zimmer || []).map((z, zi) =>
+                    `<option value="${zi}" ${b.zimmerIdx === zi ? 'selected' : ''}>${z.name} (${fmtN(z.qm, 2)} m²)</option>`
+                ).join('') + `<option value="-1" ${b.zimmerIdx === -1 ? 'selected' : ''}>Eigene m²…</option>`;
+
+                const customInput = b.zimmerIdx === -1
+                    ? `<br><input class="il-num" type="number" value="${b.customQm || 0}" min="0" step="0.5" data-i="${i}" data-f="customQm" style="margin-top:4px;"><span class="il-unit">m²</span>`
+                    : '';
+
+                locationCell = `<select class="il-select" data-i="${i}" data-f="stockwerk">${swOptions}</select>
+                    <select class="il-select" data-i="${i}" data-f="zimmer" style="margin-top:3px;">${zimmerOptions}</select>
+                    ${customInput}`;
+            } else {
+                locationCell = `<input class="il-num" type="number" value="${b.pauschale || 0}" min="0" step="10" data-i="${i}" data-f="pauschale"><span class="il-unit">€/Mo</span>`;
+            }
+
+            html += `<tr draggable="true" data-row-idx="${i}">
+                <td><span class="drag-handle" title="Ziehen zum Sortieren">⠿</span></td>
+                <td><input class="il-name" type="text" value="${b.name || ''}" placeholder="Name" data-i="${i}" data-f="name"></td>
+                <td>${typeBadge}</td>
+                <td style="min-width:160px;">${locationCell}</td>`;
 
             phases.forEach(ph => {
-                const totalMonthly = ph.monthly + fixedMonthly;
-                let miete, tooltip;
-
-                if (b.type === 'gelaende') {
-                    miete = b.pauschale;
-                    tooltip = `<div class="tt-row"><span class="tt-label">Pauschale</span><span>${fmtK(miete)}</span></div>
-                               <div class="tt-row"><span class="tt-label">Gesamt</span><span>${fmtK(miete)}</span></div>`;
-                } else {
-                    const hauskosten    = totalMonthly - gelaendePauschalen;
-                    const costPerQm     = hausGesamtQm > 0 ? hauskosten / hausGesamtQm : 0;
-                    const gemeinsAnteil = hausBewohner.length > 0
-                        ? (gemeinschaftsQm * costPerQm) / hausBewohner.length
-                        : 0;
-                    const privatAnteil  = b.qm * costPerQm;
-                    miete = gemeinsAnteil + privatAnteil;
-
-                    const gemeinsQmAnteil = hausBewohner.length > 0
-                        ? gemeinschaftsQm / hausBewohner.length
-                        : 0;
-
-                    tooltip = `
-                        <div class="tt-row"><span class="tt-label">Gesamtkosten/Mo</span><span>${fmtK(totalMonthly)}</span></div>
-                        <div class="tt-row"><span class="tt-label">− Geländepauschalen</span><span>− ${fmtK(gelaendePauschalen)}</span></div>
-                        <div class="tt-row"><span class="tt-label">= Hauskosten/Mo</span><span>${fmtK(hauskosten)}</span></div>
-                        <div class="tt-row"><span class="tt-label">€/m²</span><span>${fmtN(costPerQm, 2)}</span></div>
-                        <div class="tt-row"><span class="tt-label">Gemeinschaft (${fmtN(gemeinsQmAnteil,1)} m²)</span><span>${fmtK(gemeinsAnteil)}</span></div>
-                        <div class="tt-row"><span class="tt-label">Zimmer (${fmtN(b.qm,1)} m²)</span><span>${fmtK(privatAnteil)}</span></div>
-                        <div class="tt-row"><span class="tt-label">Gesamt</span><span>${fmtK(miete)}</span></div>`;
-                }
-
-                html += `<td>
-                    <div class="td-miete-cell">
-                        ${fmtK(miete)}
-                        <div class="rent-tooltip">
-                            <div class="rent-tooltip-inner">
-                                ${tooltip}
-                            </div>
-                        </div>
-                    </div>
-                </td>`;
+                const { miete, tooltip } = computeMiete(b, ph);
+                html += `<td><div class="td-miete-cell">${fmtK(miete)}
+                    <div class="rent-tooltip"><div class="rent-tooltip-inner">${tooltip}</div></div>
+                </div></td>`;
             });
 
-            html += '</tr>';
+            html += `<td><button class="il-del" data-i="${i}" title="Entfernen">×</button></td></tr>`;
+
         });
 
         // Totals row
-        html += `<tr style="background:#f8fafc;">
-            <td class="td-person-name" style="font-size:0.8rem;color:var(--text-light);">Summe</td>
-            <td></td><td></td>`;
+        html += `<tr style="background:#f8fafc;border-top:2px solid #e2e8f0;">
+            <td colspan="4" style="padding:8px 10px;font-size:0.78rem;color:var(--text-light);font-weight:600;">Summe</td>`;
         phases.forEach(ph => {
             const totalMonthly = ph.monthly + fixedMonthly;
-            let summe = 0;
-            bewohner.forEach(b => {
-                if (b.type === 'gelaende') {
-                    summe += b.pauschale;
-                } else {
-                    const hauskosten   = totalMonthly - gelaendePauschalen;
-                    const costPerQm    = hausGesamtQm > 0 ? hauskosten / hausGesamtQm : 0;
-                    const gemeinsAnteil = hausBewohner.length > 0
-                        ? (gemeinschaftsQm * costPerQm) / hausBewohner.length : 0;
-                    summe += gemeinsAnteil + b.qm * costPerQm;
-                }
+            const hauskosten   = ph.monthly - gelaendePauschalen;
+            // Fixed share: all bewohner pay fixedShare each
+            let summe = nTotal * fixedShare; // = fixedMonthly
+            // Gelände: each pays pauschale
+            gelaendeBewohner.forEach(b => { summe += b.pauschale; });
+            // Haus: each pays their floor/m² share of hauskosten
+            stockwerke.forEach((sw, si) => {
+                const swKosten  = gesamtHausQm > 0 ? hauskosten * (sw.gesamtQm / gesamtHausQm) : 0;
+                const costPerQm = sw.gesamtQm > 0 ? swKosten / sw.gesamtQm : 0;
+                const { residents, gemeinschaftQm } = swStats[si];
+                const n = residents.length;
+                residents.forEach(b => {
+                    summe += getPersonQm(b) * costPerQm + (n > 0 ? (gemeinschaftQm * costPerQm) / n : 0);
+                });
             });
-            const diff = summe - (ph.monthly + fixedMonthly);
-            const diffColor = Math.abs(diff) < 0.5 ? '#10b981' : '#ef4444';
-            html += `<td style="text-align:center;padding:10px 16px;">
-                <div style="font-weight:700;font-size:0.9rem;">${fmtK(summe)}</div>
-                <div style="font-size:0.72rem;color:${diffColor};margin-top:2px;">
-                    ${Math.abs(diff) < 0.5 ? '✓ Ausgeglichen' : `Δ ${fmtK(diff)}`}
-                </div>
+            const d = summe - totalMonthly;
+            const diffColor = Math.abs(d) < 0.5 ? '#10b981' : '#ef4444';
+            html += `<td style="text-align:center;padding:8px 14px;">
+                <div style="font-weight:700;font-size:0.88rem;">${fmtK(summe)}</div>
+                <div style="font-size:0.7rem;color:${diffColor};margin-top:1px;">${Math.abs(d) < 0.5 ? '✓' : `Δ ${fmtK(d)}`}</div>
             </td>`;
         });
-        html += '</tr></tbody></table>';
+        html += `<td></td><td></td></tr>`;
+
+        // Add person row
+        html += `<tr class="add-person-row">
+            <td colspan="${4 + nPhases + 1}">
+                <button class="add-person-inline" id="add-person-btn">+ Bewohner hinzufügen</button>
+            </td>
+        </tr>`;
+
+        html += '</tbody></table>';
+
+        // Save focus state before re-render
+        const prevActive  = document.activeElement;
+        const focusI      = prevActive?.dataset?.i;
+        const focusF      = prevActive?.dataset?.f;
+        const selStart    = prevActive?.selectionStart;
+        const selEnd      = prevActive?.selectionEnd;
 
         resultsEl.innerHTML = html;
+
+        // Restore focus after re-render
+        if (focusI != null && focusF != null) {
+            const el = resultsEl.querySelector(`[data-i="${focusI}"][data-f="${focusF}"]`);
+            if (el?.tagName === 'INPUT') {
+                el.focus();
+                try { el.setSelectionRange(selStart, selEnd); } catch {}
+            }
+        }
+
+        // Attach listeners to the interactive table
+        resultsEl.querySelectorAll('input[data-f="name"]').forEach(el => el.addEventListener('input', e => {
+            bewohner[+e.target.dataset.i].name = e.target.value; calculate();
+        }));
+        resultsEl.querySelectorAll('select[data-f="type"]').forEach(el => el.addEventListener('change', e => {
+            bewohner[+e.target.dataset.i].type = e.target.value; calculate();
+        }));
+        resultsEl.querySelectorAll('select[data-f="stockwerk"]').forEach(el => el.addEventListener('change', e => {
+            const i = +e.target.dataset.i;
+            bewohner[i].stockwerkIdx = +e.target.value;
+            bewohner[i].zimmerIdx = 0;
+            calculate();
+        }));
+        resultsEl.querySelectorAll('select[data-f="zimmer"]').forEach(el => el.addEventListener('change', e => {
+            bewohner[+e.target.dataset.i].zimmerIdx = +e.target.value; calculate();
+        }));
+        resultsEl.querySelectorAll('input[data-f="customQm"]').forEach(el => el.addEventListener('input', e => {
+            bewohner[+e.target.dataset.i].customQm = parseFloat(e.target.value) || 0; calculate();
+        }));
+        resultsEl.querySelectorAll('input[data-f="pauschale"]').forEach(el => el.addEventListener('input', e => {
+            bewohner[+e.target.dataset.i].pauschale = parseFloat(e.target.value) || 0; calculate();
+        }));
+        resultsEl.querySelectorAll('.il-del').forEach(btn => btn.addEventListener('click', e => {
+            if (bewohner.length > 1) {
+                bewohner.splice(+e.currentTarget.dataset.i, 1); calculate();
+            }
+        }));
+        document.getElementById('add-person-btn').addEventListener('click', () => {
+            bewohner.push({ name: `Person ${bewohner.length + 1}`, type: 'haus', stockwerkIdx: 0, zimmerIdx: 0, customQm: 0, pauschale: 0 });
+            calculate();
+        });
+
+        // Drag-to-reorder
+        let dragSrcIdx = null;
+        resultsEl.querySelectorAll('tr[data-row-idx]').forEach(tr => {
+            const idx = +tr.dataset.rowIdx;
+            tr.addEventListener('dragstart', e => {
+                dragSrcIdx = idx;
+                e.dataTransfer.effectAllowed = 'move';
+                setTimeout(() => tr.classList.add('dragging'), 0);
+            });
+            tr.addEventListener('dragend', () => {
+                tr.classList.remove('dragging');
+                resultsEl.querySelectorAll('tr[data-row-idx]').forEach(r => r.classList.remove('drag-over'));
+            });
+            tr.addEventListener('dragover', e => {
+                e.preventDefault();
+                e.dataTransfer.dropEffect = 'move';
+                resultsEl.querySelectorAll('tr[data-row-idx]').forEach(r => r.classList.remove('drag-over'));
+                if (dragSrcIdx !== idx) tr.classList.add('drag-over');
+            });
+            tr.addEventListener('dragleave', () => tr.classList.remove('drag-over'));
+            tr.addEventListener('drop', e => {
+                e.preventDefault();
+                tr.classList.remove('drag-over');
+                if (dragSrcIdx !== null && dragSrcIdx !== idx) {
+                    const moved = bewohner.splice(dragSrcIdx, 1)[0];
+                    bewohner.splice(idx, 0, moved);
+                    calculate();
+                }
+            });
+        });
     }
 
     // ── Tab switching ──────────────────────────────────────
@@ -1348,7 +1353,7 @@
             ruecklageQm:   ruecklageQmEl.value,
             ideal:         idealEl.value,
             tranches:      JSON.stringify(tranches),
-            hausGesamtQm:  hausGesamtQmEl.value,
+            stockwerke:    JSON.stringify(stockwerke),
             bewohner:      JSON.stringify(bewohner),
         };
     }
@@ -1364,13 +1369,9 @@
         if (d.qm            != null) wohnflaecheEl.value   = d.qm;
         if (d.ruecklageQm   != null) ruecklageQmEl.value   = d.ruecklageQm;
         if (d.ideal         != null) idealEl.value         = d.ideal;
-        if (d.hausGesamtQm  != null) hausGesamtQmEl.value  = d.hausGesamtQm;
-        if (d.tranches) {
-            try { tranches = JSON.parse(d.tranches); } catch {}
-        }
-        if (d.bewohner) {
-            try { bewohner = JSON.parse(d.bewohner); } catch {}
-        }
+        if (d.tranches)  { try { tranches   = JSON.parse(d.tranches);  } catch {} }
+        if (d.stockwerke) { try { stockwerke = JSON.parse(d.stockwerke); } catch {} }
+        if (d.bewohner)  { try { bewohner   = JSON.parse(d.bewohner);  } catch {} }
     }
 
     function saveState() {
@@ -1395,26 +1396,51 @@
     }
 
     const DEFAULTS = {
-        kaufpreisMain: '600000', modern: '400000',
+        kaufpreisMain: '550000', modern: '400000',
         maklerPct: '0', notarPct: '2', gewPct: '6.5',
         betriebs: '1000', invest: '500',
-        qm: '336', ruecklageQm: '11.5', ideal: '650',
+        qm: '348', ruecklageQm: '11.5', ideal: '600',
         tranches: JSON.stringify([
-            { name: 'Bankkredit',        amount: 800000, rate: 4, years: 30 },
-            { name: 'Nachrangsdarlehen', amount: 200000, rate: 2, years: 10 },
+            { name: 'Bankkredit',        amount: 400000, rate: 4,   years: 30 },
+            { name: 'Nachrangsdarlehen', amount: 600000, rate: 2.5, years: 30 },
         ]),
-        hausGesamtQm: '200',
+        stockwerke: JSON.stringify([
+            { name: 'EG',    gesamtQm: 123.84, zimmer: [
+                { name: 'Zimmer 1', qm: 15.26 },
+                { name: 'Zimmer 2', qm: 21.71 },
+                { name: 'Zimmer 3', qm: 20.56 },
+                { name: 'Zimmer 4', qm: 12.83 },
+            ]},
+            { name: '1. OG', gesamtQm: 112.54, zimmer: [
+                { name: 'Zimmer 1', qm: 15.26 },
+                { name: 'Zimmer 2', qm: 21.71 },
+                { name: 'Zimmer 3', qm: 20.56 },
+                { name: 'Zimmer 4', qm: 12.83 },
+            ]},
+            { name: '2. OG', gesamtQm: 112.54, zimmer: [
+                { name: 'Zimmer 1', qm: 20 },
+                { name: 'Zimmer 2', qm: 20 },
+                { name: 'Zimmer 3', qm: 20 },
+            ]},
+        ]),
         bewohner: JSON.stringify([
-            { name: 'Person 1', type: 'haus',     qm: 25,  pauschale: 0   },
-            { name: 'Person 2', type: 'haus',     qm: 20,  pauschale: 0   },
-            { name: 'Bauwagen', type: 'gelaende', qm: 0,   pauschale: 150 },
+            { name: 'Person 1',    type: 'haus',     stockwerkIdx: 0, zimmerIdx: 0, customQm: 0, pauschale: 0   },
+            { name: 'Person 2',    type: 'haus',     stockwerkIdx: 0, zimmerIdx: 1, customQm: 0, pauschale: 0   },
+            { name: 'Person 3',    type: 'haus',     stockwerkIdx: 0, zimmerIdx: 2, customQm: 0, pauschale: 0   },
+            { name: 'Person 4',    type: 'haus',     stockwerkIdx: 1, zimmerIdx: 0, customQm: 0, pauschale: 0   },
+            { name: 'Person 5',    type: 'haus',     stockwerkIdx: 1, zimmerIdx: 1, customQm: 0, pauschale: 0   },
+            { name: 'Person 6',    type: 'haus',     stockwerkIdx: 1, zimmerIdx: 3, customQm: 0, pauschale: 0   },
+            { name: 'Person 7',    type: 'haus',     stockwerkIdx: 2, zimmerIdx: 0, customQm: 0, pauschale: 0   },
+            { name: 'Person 8',    type: 'haus',     stockwerkIdx: 2, zimmerIdx: 1, customQm: 0, pauschale: 0   },
+            { name: 'Person 9',    type: 'haus',     stockwerkIdx: 2, zimmerIdx: 2, customQm: 0, pauschale: 0   },
+            { name: 'Nagelstudio', type: 'gelaende', stockwerkIdx: 0, zimmerIdx: 0, customQm: 0, pauschale: 500 },
         ]),
     };
 
-    document.getElementById('reset-btn').addEventListener('click', function() {
+    document.getElementById('reset-btn').addEventListener('click', () => {
         applyState(DEFAULTS);
         renderTranches();
-        renderBewohner();
+        renderStockwerke();
         calculate();
     });
 
@@ -1431,7 +1457,7 @@
     const hasURL = loadFromURL();
     if (!hasURL) loadFromLocalStorage();
     renderTranches();
-    renderBewohner();
+    renderStockwerke();
     calculate();
     if (hasURL) {
         saveState();
